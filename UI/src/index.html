@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>MEVN App Test</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-view :key="$route.fullPath"></router-view>
+        <!-- :key="" is needed for reloading new route with same component -->
+    </div>
+</body>
+
+</html>
