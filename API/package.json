@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "resetDB": "node scripts/resetDB.js"
+    "resetDB": "node scripts/resetDB.js",
+    "populateDB": "node scripts/populateDB.js"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",

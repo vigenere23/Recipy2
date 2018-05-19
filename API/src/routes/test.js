@@ -1,10 +1,11 @@
 import express from 'express'
 const router = express.Router()
 
-import testController from '../controllers/testController'
+import testController from '../controllers/test'
 
 router.get('/', testController.index)
-router.get('/new', testController.new_get)
-router.get('/all', testController.all)
+router.get('/users', testController.users)
+router.get('/recipes', testController.recipes)
+router.get('/comments', testController.comments)
 
 module.exports = router

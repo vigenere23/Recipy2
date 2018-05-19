@@ -4,7 +4,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 // Routes
-import testRoute from './routes/testRoute'
+import testRoute from './routes/test'
 
 // constants
 import * as consts from './constants'

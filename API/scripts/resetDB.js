@@ -7,12 +7,10 @@ mongoose.connect(consts.DB_PATH).then(result => {
   mongoose.connection.db.listCollections().toArray().then(collections => {
     if (collections.length != 0) {
       console.log('Beginning deletion of ALL model entries...')
-      console.log('------------------------------------------')
       collections.forEach(collection => {
         mongoose.connection.dropCollection(collection.name)
         console.log('DELETED \'' + collection.name + '\' collection')
       })
-      console.log('==========================================')
       console.log('DONE')
     }
     else {
