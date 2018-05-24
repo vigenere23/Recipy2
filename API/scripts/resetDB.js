@@ -1,6 +1,6 @@
-var mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-var consts = require('../src/constants')
+import consts from '@/constants'
 
 mongoose.connect(consts.DB_PATH).then(result => {
   console.log('Connected to database')

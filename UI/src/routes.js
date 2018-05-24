@@ -1,12 +1,11 @@
 // Components
 import Home from '@/components/pages/Home.vue'
-import Test from '@/components/pages/Test.vue'
+import Collections from '@/components/pages/Collections.vue'
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/test', component: Test, children: [
-    { path: 'new', component: Test }
-  ]}
+  { path: '/collections', component: Collections },
+  { path: '/collections/:collection', component: Collections }
 ]
 
 export default routes

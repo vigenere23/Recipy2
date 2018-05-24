@@ -1,4 +1,6 @@
 {
-  "presets": ["es2015"],
+  "presets": [
+    ["env", {"modules": false}]
+  ],
   "plugins": ["transform-async-to-generator"]
 }

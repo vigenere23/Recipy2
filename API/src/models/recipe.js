@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+import mongoose from 'mongoose'
 var Schema = mongoose.Schema
 
 var RecipeSchema = new Schema({
@@ -73,4 +73,4 @@ var RecipeSchema = new Schema({
 
 var Recipe = mongoose.model('Recipe', RecipeSchema)
 
-module.exports = Recipe
+export default Recipe

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+import mongoose from 'mongoose'
 var Schema = mongoose.Schema
 
 var CommentSchema = new Schema({
@@ -13,4 +13,4 @@ var CommentSchema = new Schema({
 
 var Comment = mongoose.model('Comment', CommentSchema)
 
-module.exports = Comment
+export default Comment

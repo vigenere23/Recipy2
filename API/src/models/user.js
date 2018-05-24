@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+import mongoose from 'mongoose'
 var Schema = mongoose.Schema
 
 var UserSchema = new Schema({
@@ -26,4 +26,4 @@ var UserSchema = new Schema({
 
 var User = mongoose.model('User', UserSchema)
 
-module.exports = User
+export default User

@@ -1,7 +1,7 @@
-var Comment = require('../src/models/comment')
+import Comment from '@/models/comment'
 
 var comment = new Comment({
   text: 'Thanks, it tasted amazing! Plus, super easy to prepare!'
 })
 
-module.exports = comment
+export default comment

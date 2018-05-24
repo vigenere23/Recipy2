@@ -1,9 +1,9 @@
-var mongoose = require('mongoose')
-var consts = require('../src/constants')
+import mongoose from 'mongoose'
+import consts from '@/constants'
 
-var user = require('../model_templates/user')
-var recipe = require('../model_templates/recipe')
-var comment = require('../model_templates/comment')
+import user from '@/model_templates/user'
+import recipe from '@/model_templates/recipe'
+import comment from '@/model_templates/comment'
 
 comment.recipesID = recipe._id
 recipe.userID = user._id

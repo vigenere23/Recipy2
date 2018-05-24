@@ -1,4 +1,4 @@
-var Recipe = require('../src/models/recipe')
+import Recipe from '@/models/recipe'
 
 var recipe = new Recipe({
   title: 'The King Burger',
@@ -16,4 +16,4 @@ var recipe = new Recipe({
   numberOfBookmarks: 15
 })
 
-module.exports = recipe
+export default recipe
