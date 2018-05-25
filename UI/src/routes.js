@@ -1,11 +1,13 @@
 // Components
-import Home from '@/components/pages/Home.vue'
+import Recipes from '@/components/pages/Recipes.vue'
 import Collections from '@/components/pages/Collections.vue'
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', redirect: '/recipes' },
+  { path: '/recipes', component: Recipes },
+  { path: '/collections/:collection', component: Collections },
   { path: '/collections', component: Collections },
-  { path: '/collections/:collection', component: Collections }
+  { path: '*', redirect: '/recipes' /*, component: '404'*/ }
 ]
 
 export default routes
