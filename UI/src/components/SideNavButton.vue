@@ -7,7 +7,21 @@
 
 <script>
 export default {
-  name: 'SideNavButton'
+  name: 'SideNavButton',
+  props: [
+    'sideNavOpened'
+  ],
+  methods: {
+    toggleSideNav: function() {
+      this.sideNavOpened ?
+        this.$emit('openSideNav') : 
+        this.$emit('closeSideNav')
+      this.sideNavOpened = !this.sideNavOpened
+    }
+  },
+  mounted() {
+    this.sideNavOpened = false;
+  }
 }
 </script>
 

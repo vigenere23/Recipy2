@@ -12,7 +12,7 @@ import HeaderNav from '@/components/HeaderNav.vue'
 export default {
   name: 'Header',
   components: {
-    SideNavButton
+    HeaderNav
   },
   props: [
     'hasSideNav'
