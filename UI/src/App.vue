@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :hasSideNav="true"></Header>
+    <Header></Header>
     <router-view :key="$route.fullPath"></router-view>
     <!-- :key="" is needed for reloading new route with same component -->
   </div>
@@ -33,6 +33,7 @@ export default {
 html,
 body {
   width: 100%;
+	height: 120vh;
   top: 0;
 }
 

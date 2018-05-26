@@ -1,7 +1,7 @@
 <template>
-  <div id="header">
+  <div id="header" :class="{ float: isScrolledTop }">
     <router-link to="/recipes" class="logo">Recipy</router-link>
-		<HeaderNav></HeaderNav>
+		<HeaderNav :sideNavIcon="sideNavIcon"></HeaderNav>
   </div>
 </template>
 
@@ -14,9 +14,23 @@ export default {
   components: {
     HeaderNav
   },
-  props: [
-    'hasSideNav'
-  ]
+	data() {
+		return {
+			sideNavIcon: 'search',
+			isScrolledTop: false
+		}
+	},
+	methods: {
+		handleScroll(e) {
+			this.isScrolledTop = e.pageY > 10 ? true : false
+		}
+	},
+	created: function () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed: function () {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 }
 </script>
 
@@ -28,15 +42,20 @@ export default {
   width: 100%;
   height: 64px;
   background-color: white;
-  position: absolute;
+  position: fixed;
   padding: 16px;
   top: 0;
-  box-shadow: $shadow-2dp;
-  z-index: 99;
+	border-bottom: solid 1px $divider-color;
+  z-index: 50;
 	display: flex;
 	flex-direction: left;
 	align-items: center;
 	justify-content: space-between;
+
+	&.float {
+		box-shadow: $shadow-4dp;
+		/* transition: box-shadow $ease-in-out */
+	}
 
   .logo {
     font-family: 'Bariol', 'Roboto', sans-serif;

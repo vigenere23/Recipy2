@@ -3,7 +3,7 @@
 	<ul>
 		<!-- li v-for -->
 	</ul>
-	<SideNavButton></SideNavButton>
+	<SideNavButton :icon="sideNavIcon"></SideNavButton>
 </nav>
 </template>
 
@@ -15,6 +15,9 @@ export default {
 	name: 'HeaderNav',
 	components: {
 		SideNavButton
+	},
+	props: {
+		sideNavIcon: String
 	}
 }
 </script>

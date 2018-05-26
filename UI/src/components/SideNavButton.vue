@@ -1,6 +1,8 @@
 <template>
-  <a id="side-nav-button" v-on:click="toggleSideNav">
-    <i class="material-icons">menu</i>
+  <a id="side-nav-button" @click="$emit('toggleSideNav'), toggleSideNav()">
+    <i class="material-icons">
+			{{ sideNavOpened ? 'keyboard_arrow_right' : icon }}
+		</i>
   </a>
 </template>
 
@@ -8,19 +10,18 @@
 <script>
 export default {
   name: 'SideNavButton',
-  props: [
-    'sideNavOpened'
-  ],
+  props: {
+		icon: String
+	},
+	data() {
+		return {
+			sideNavOpened: false
+		}
+	},
   methods: {
-    toggleSideNav: function() {
-      this.sideNavOpened ?
-        this.$emit('openSideNav') : 
-        this.$emit('closeSideNav')
+    toggleSideNav() {
       this.sideNavOpened = !this.sideNavOpened
     }
-  },
-  mounted() {
-    this.sideNavOpened = false;
   }
 }
 </script>
