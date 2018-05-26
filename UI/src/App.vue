@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header :hasSideNav="true"></Header>
     <router-view :key="$route.fullPath"></router-view>
     <!-- :key="" is needed for reloading new route with same component -->
   </div>
@@ -20,6 +20,8 @@ export default {
 
 
 <style lang="scss">
+@import '~@/assets/fonts/Bariol/stylesheet.css';
+
 * {
   position: relative;
   box-sizing: border-box;

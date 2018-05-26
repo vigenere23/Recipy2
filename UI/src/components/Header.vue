@@ -1,13 +1,13 @@
 <template>
   <div id="header">
-    <SideNavButton v-if="hasSideNav"></SideNavButton>
     <router-link to="/recipes" class="logo">Recipy</router-link>
+		<HeaderNav></HeaderNav>
   </div>
 </template>
 
 
 <script>
-import SideNavButton from '@/components/SideNavButton.vue'
+import HeaderNav from '@/components/HeaderNav.vue'
 
 export default {
   name: 'Header',
@@ -26,25 +26,28 @@ export default {
 
 #header {
   width: 100%;
-  height: 72px;
+  height: 64px;
   background-color: white;
   position: absolute;
   padding: 16px;
   top: 0;
   box-shadow: $shadow-2dp;
   z-index: 99;
+	display: flex;
+	flex-direction: left;
+	align-items: center;
+	justify-content: space-between;
 
   .logo {
     font-family: 'Bariol', 'Roboto', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: $primary-color;
     display: flex;
     height: 100%;
-    padding: 0 16px;
+    padding: 0 8px;
     align-items: center;
     justify-content: center;
-    float: left;
   }
 }
 </style>
