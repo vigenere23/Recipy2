@@ -1,23 +1,29 @@
 <template>
   <div id="header" :class="{ float: isScrolledTop }">
     <router-link to="/recipes" class="logo">Recipy</router-link>
-		<HeaderNav :sideNavIcon="sideNavIcon"></HeaderNav>
+		<HeaderRight :nav="nav"></HeaderRight>
   </div>
 </template>
 
 
 <script>
-import HeaderNav from '@/components/HeaderNav.vue'
+import HeaderRight from '@/components/HeaderRight.vue'
 
 export default {
   name: 'Header',
   components: {
-    HeaderNav
+		HeaderRight
   },
 	data() {
 		return {
-			sideNavIcon: 'search',
-			isScrolledTop: false
+			isScrolledTop: false,
+			sideNavOpened: false,
+			nav: [
+				'Breakfeast',
+				'Lunch',
+				'Dinner',
+				'Dessert'
+			]
 		}
 	},
 	methods: {
@@ -29,7 +35,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
   },
   destroyed: function () {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll');
   }
 }
 </script>
@@ -39,22 +45,25 @@ export default {
 @import '~@/assets/scss/variables';
 
 #header {
-  width: 100%;
+  /*width: 100%;*/
   height: 64px;
   background-color: white;
   position: fixed;
-  padding: 16px;
+  padding: 0 16px;
   top: 0;
+	left: 0;
+	right: 0;
 	border-bottom: solid 1px $divider-color;
   z-index: 50;
 	display: flex;
 	flex-direction: left;
 	align-items: center;
 	justify-content: space-between;
+	transition: box-shadow 300ms $ease-in-out;
 
 	&.float {
 		box-shadow: $shadow-4dp;
-		/* transition: box-shadow $ease-in-out */
+		transition: box-shadow 200ms $ease-in-out;
 	}
 
   .logo {
