@@ -55,16 +55,15 @@ export default {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	z-index: 80;
-	background-color: rgba(0, 0, 0, 0.54);
-	opacity: 0;
-	visibility: hidden;
-	transition: opactiy 250ms $ease-in-out, visibility 0 linear 250ms;
+  z-index: 80;
+  visibility: hidden;
+	background-color: rgba(0, 0, 0, 0);
+	transition: background-color 250ms $ease-in-out, visibility 250ms;
 
 	&.show-side-nav {
 		visibility: visible;
-		opacity: 1;
-		transition: opactiy 200ms $ease-in-out;
+		background-color: $text-secondary;
+		transition: background-color 200ms $ease-in-out;
 	}
 }
 </style>

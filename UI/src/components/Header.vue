@@ -19,10 +19,11 @@ export default {
 			isScrolledTop: false,
 			sideNavOpened: false,
 			nav: [
-				'Breakfeast',
-				'Lunch',
-				'Dinner',
-				'Dessert'
+        'all',
+				'breakfeast',
+				'lunch',
+				'dinner',
+				'dessert'
 			]
 		}
 	},

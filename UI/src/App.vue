@@ -20,10 +20,8 @@ export default {
 * {
   position: relative;
   box-sizing: border-box;
-  font-size: 400;
   margin: 0;
 	padding: 0;
-	color: $font-color;
 }
 
 html,
@@ -31,7 +29,10 @@ body {
   width: 100%;
 	height: 120vh;
   top: 0;
-	box-sizing: content-box;
+  box-sizing: content-box;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 a {
