@@ -1,7 +1,9 @@
 <template>
-  <div id="recipes" :class="{'show-side-nav': searchDrawerOpened}">
-    <Header></Header>
-		<SideNavScreen></SideNavScreen>
+  <div id="recipes" :class="{'show-side-nav': rightDrawerOpened}">
+    <Header :nav="nav"></Header>
+		<DrawerScreen></DrawerScreen>
+    <SearchDrawer></SearchDrawer>
+    <MenuDrawer :nav="nav"></MenuDrawer>
   </div>
 </template>
 
@@ -9,29 +11,40 @@
 <script>
 import bus from '@/EventBus'
 import Header from '@/components/Header.vue'
-import SideNavScreen from '@/components/DrawerScreen.vue'
+import DrawerScreen from '@/components/DrawerScreen.vue'
+import SearchDrawer from '@/components/SearchDrawer.vue'
+import MenuDrawer from '@/components/MenuDrawer.vue'
 
 export default {
 	name: 'Recipes',
 	components: {
 		Header,
-		SideNavScreen
+    DrawerScreen,
+    SearchDrawer,
+    MenuDrawer
 	},
 	data() {
 		return {
-			searchDrawerOpened: false
+      rightDrawerOpened: false,
+      nav: [
+        'all',
+				'breakfeast',
+				'lunch',
+				'dinner',
+				'dessert'
+			]
 		}
 	},
 	methods: {
-		handleOpenSearchDrawerEvent(isOpened) {
-			this.searchDrawerOpened = isOpened
+		handleRightDrawerOpenedEvent(isOpened) {
+			this.rightDrawerOpened = isOpened
 		}
 	},
 	mounted() {
-		bus.$on('openSearchDrawerEvent', isOpened => this.handleOpenSearchDrawerEvent(isOpened))
+		bus.$on('rightDrawerOpenedEvent', this.handleRightDrawerOpenedEvent)
 	},
 	beforeDestroyed() {
-		bus.$off('openSearchDrawerEvent')
+		bus.$off('rightDrawerOpenedEvent')
 	}
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <a id="side-nav-button" @click="emitOpenSearchDrawerEvent(!searchDrawerOpened)">
+  <a id="search-drawer-button" @click="emitRightDrawerOpenedEvent(!searchDrawerOpened)">
     <i class="material-icons">
 			{{ searchDrawerOpened ? 'keyboard_arrow_right' : 'search' }}
 		</i>
@@ -18,28 +18,27 @@ export default {
 		}
 	},
   methods: {
-		emitOpenSearchDrawerEvent(isOpened) {
-			bus.$emit('openSearchDrawerEvent', isOpened)
+		emitRightDrawerOpenedEvent(isOpened) {
+			bus.$emit('rightDrawerOpenedEvent', isOpened)
 		},
-    handleOpenSearchDrawerEvent(isOpened) {
+    handleRightDrawerOpenedEvent(isOpened) {
       this.searchDrawerOpened = isOpened
     }
 	},
 	mounted() {
-		bus.$on('openSearchDrawerEvent', isOpened => this.handleOpenSearchDrawerEvent(isOpened))
+		bus.$on('rightDrawerOpenedEvent', this.handleRightDrawerOpenedEvent)
 	},
 	beforeDestroyed() {
-		bus.$off('openSearchDrawerEvent')
+		bus.$off('rightDrawerOpenedEvent')
 	}
 }
 </script>
 
 
 <style lang="scss" scoped>
-#side-nav-button {
+#search-drawer-button {
 	padding: 8px;
 	cursor: pointer;
-	margin-right: 8px;
 
 	.material-icons {
 		display: block;

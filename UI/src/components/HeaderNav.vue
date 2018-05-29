@@ -22,6 +22,9 @@ export default {
 <style lang="scss" scoped>
 #header-nav {
 	height: 100%;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
 
 	ul {
 		display: block;

@@ -1,42 +1,58 @@
 <template>
   <div id="header" :class="{ float: isScrolledTop }">
-    <router-link to="/recipes" class="logo">Recipy</router-link>
-		<HeaderRight :nav="nav"></HeaderRight>
+    <div id="left-header">
+      <MenuDrawerButton v-if="isSmallScreen"></MenuDrawerButton>
+      <router-link to="/recipes" class="logo">Recipy</router-link>
+    </div>
+    <div id="right-header">
+      <HeaderNav v-if="!isSmallScreen" :nav="nav"></HeaderNav>
+      <SigninButton></SigninButton>
+      <SearchDrawerButton></SearchDrawerButton>
+    </div>
   </div>
 </template>
 
 
 <script>
-import HeaderRight from '@/components/HeaderRight.vue'
+import MenuDrawerButton from '@/components/MenuDrawerButton.vue'
+import HeaderNav from '@/components/HeaderNav.vue'
+import SigninButton from '@/components/SigninButton.vue'
+import SearchDrawerButton from '@/components/SearchDrawerButton.vue'
+
+import bus from '@/EventBus'
 
 export default {
   name: 'Header',
   components: {
-		HeaderRight
+    MenuDrawerButton,
+    HeaderNav,
+    SigninButton,
+    SearchDrawerButton
+  },
+  props: {
+    nav: Array
   },
 	data() {
 		return {
-			isScrolledTop: false,
-			sideNavOpened: false,
-			nav: [
-        'all',
-				'breakfeast',
-				'lunch',
-				'dinner',
-				'dessert'
-			]
+      isScrolledTop: false,
+      isSmallScreen: false
 		}
 	},
 	methods: {
-		handleScroll(e) {
-			this.isScrolledTop = e.pageY > 10 ? true : false
-		}
+		handleScrollEvent(e) {
+			this.isScrolledTop = e.pageY > 10
+    },
+    handleIsSmallScreenEvent(isSmallScreen) {
+      this.isSmallScreen = isSmallScreen
+    }
 	},
-	created: function () {
-    window.addEventListener('scroll', this.handleScroll);
+	mounted () {
+    window.addEventListener('scroll', this.handleScrollEvent);
+    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
   },
-  destroyed: function () {
+  beforeDestroyed () {
     window.removeEventListener('scroll');
+    bus.$off('isSmallScreenEvent')
   }
 }
 </script>
@@ -60,6 +76,7 @@ export default {
 	flex-direction: left;
 	align-items: center;
 	justify-content: space-between;
+  color: $text-secondary;
 	transition: box-shadow 300ms $ease-in-out;
 
 	&.float {
@@ -77,6 +94,16 @@ export default {
     padding: 0 8px;
     align-items: center;
     justify-content: center;
+  }
+
+  > * {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  > #left-header > *:not(:last-child), > #right-header > *:not(:last-child) {
+    margin-right: 8px;
   }
 }
 </style>
