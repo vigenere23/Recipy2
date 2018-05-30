@@ -2,7 +2,9 @@
 <nav id="header-nav">
 	<ul>
 		<li v-for="(link, i) in nav" :key="i">
-      <router-link :to="'./' + link">{{ link }}</router-link>
+      <router-link :to="'./' + link">
+        <span :class="{current : link == current}">{{ link }}</span>
+      </router-link>
     </li>
 	</ul>
 </nav>
@@ -13,13 +15,16 @@
 export default {
 	name: 'HeaderNav',
 	props:  {
-		nav: Array
+    nav: Array,
+    current: String
 	}
 }
 </script>
 
 
 <style lang="scss" scoped>
+@import '~@/assets/scss/variables';
+
 #header-nav {
 	height: 100%;
   font-family: 'Roboto', arial, sans-serif;
@@ -39,10 +44,30 @@ export default {
       a {
         height: 100%;
         width: 100%;
+        display: block;
         display: flex;
-			  align-items: center;
-			  height: 100%;
+        align-items: center;
         padding: 0 16px;
+
+        span {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          
+          &.current {
+            color: $primary-color;
+          }
+
+          &.current::after {
+            content: "";
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            border-top: 4px solid $primary-color;
+            border-radius: 2px;
+          }
+        }
       }
 		}
 	}

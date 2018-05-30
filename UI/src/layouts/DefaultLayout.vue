@@ -1,9 +1,9 @@
 <template>
 <div id="default-layout" :class="{'show-side-drawer': rightDrawerOpened}">
-  <Header :nav="nav"></Header>
+  <Header :nav="nav" :current="current"></Header>
   <DrawerScreen></DrawerScreen>
   <SearchDrawer></SearchDrawer>
-  <MenuDrawer :nav="nav"></MenuDrawer>
+  <MenuDrawer :nav="nav" :current="current"></MenuDrawer>
 </div>
 </template>
 
@@ -32,7 +32,8 @@ export default {
 				'lunch',
 				'dinner',
 				'dessert'
-			]
+      ],
+      current: 'breakfeast'
 		}
 	},
 	methods: {
