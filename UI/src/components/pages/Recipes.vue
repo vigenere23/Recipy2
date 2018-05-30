@@ -1,65 +1,24 @@
 <template>
-  <div id="recipes" :class="{'show-side-nav': rightDrawerOpened}">
-    <Header :nav="nav"></Header>
-		<DrawerScreen></DrawerScreen>
-    <SearchDrawer></SearchDrawer>
-    <MenuDrawer :nav="nav"></MenuDrawer>
+<DefaultLayout>
+  <div id="recipes">
+    <!-- Should contain containers and components -->
   </div>
+</DefaultLayout>
 </template>
 
 
 <script>
-import bus from '@/EventBus'
-import Header from '@/components/Header.vue'
-import DrawerScreen from '@/components/DrawerScreen.vue'
-import SearchDrawer from '@/components/SearchDrawer.vue'
-import MenuDrawer from '@/components/MenuDrawer.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 export default {
 	name: 'Recipes',
-	components: {
-		Header,
-    DrawerScreen,
-    SearchDrawer,
-    MenuDrawer
-	},
-	data() {
-		return {
-      rightDrawerOpened: false,
-      nav: [
-        'all',
-				'breakfeast',
-				'lunch',
-				'dinner',
-				'dessert'
-			]
-		}
-	},
-	methods: {
-		handleRightDrawerOpenedEvent(isOpened) {
-			this.rightDrawerOpened = isOpened
-		}
-	},
-	mounted() {
-		bus.$on('rightDrawerOpenedEvent', this.handleRightDrawerOpenedEvent)
-	},
-	beforeDestroyed() {
-		bus.$off('rightDrawerOpenedEvent')
-	}
+  components: {
+    DefaultLayout
+  }
 }
 </script>
 
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/variables';
 
-#recipes {
-	margin-right: 0;
-	transition: margin-right 250ms $ease-in-out;
-
-	&.show-side-nav {
-		margin-right: 240px;
-		transition: margin-right 200ms $ease-in-out;
-	}
-}
 </style>
