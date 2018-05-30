@@ -1,5 +1,5 @@
 <template>
-  <Nav id="header-nav" :nav="nav" :current="current"></Nav>
+  <Nav id="drawer-nav" :nav="nav" :current="current"></Nav>
 </template>
 
 
@@ -7,7 +7,7 @@
 import Nav from '@/components/Nav.vue'
 
 export default {
-  name: 'HeaderNav',
+  name: 'DrawerNav',
   components: {
     Nav
   },
@@ -18,11 +18,11 @@ export default {
 }
 </script>
 
-
+<!--
 <style lang="scss">
 @import '~@/assets/scss/variables';
 
-.nav#header-nav {
+.nav#drawer-nav {
   height: 100%;
   text-transform: uppercase;
 
@@ -66,3 +66,4 @@ export default {
 	}
 }
 </style>
+-->
