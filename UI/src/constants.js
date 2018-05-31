@@ -1,4 +1,3 @@
 export default {
-  smallWidth: 900,
-  largeWidth: 1024,
+  smallWidth: 1024,
 }

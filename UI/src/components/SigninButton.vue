@@ -10,7 +10,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 #signin-button {
   height: 100%;
   padding: 8px;

@@ -39,7 +39,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 #menu-drawer-button {
 	padding: 8px;
 	cursor: pointer;

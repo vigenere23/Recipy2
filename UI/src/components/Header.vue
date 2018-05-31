@@ -59,11 +59,11 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~@/assets/scss/variables';
 
 #header {
-  /*width: 100%;*/
+  width: inherit;
   height: 64px;
   background-color: white;
   position: fixed;

@@ -18,52 +18,56 @@ export default {
 }
 </script>
 
-<!--
+
 <style lang="scss">
 @import '~@/assets/scss/variables';
 
 .nav#drawer-nav {
-  height: 100%;
   text-transform: uppercase;
+  width: 100%;
 
-	ul {
-		display: block;
-		height: 100%;
-		display: flex;
+  ul {
+    display: block;
+    width: 100%;
 
-		li {
-			height: 100%;
-      
+    li {
+      width: 100%;
+      height: 48px;
+
       a {
-        height: 100%;
         width: 100%;
-        display: block;
+        height: 100%;
         display: flex;
         align-items: center;
-        padding: 0 16px;
+        transition: background-color 250ms $ease-in-out;
+
+        &:hover {
+          background-color: #F5F5F5;
+          transition: background-color 200ms $ease-in-out;
+        }
 
         span {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          
+          padding-left: 32px;
+
           &.current {
             color: $primary-color;
+            text-indent: 0.5em;
           }
 
-          &.current::after {
+          &.current::before {
             content: "";
-            width: 100%;
+            height: 100%;
+            width: 1.4em;
             display: block;
             position: absolute;
-            bottom: 0;
-            border-top: 4px solid $primary-color;
-            border-radius: 2px;
+            left: 0;
+            transform: translateX(-50%);
+            background-color: $primary-color;
+            border-radius: 50%;
           }
         }
       }
-		}
-	}
+    }
+  }
 }
 </style>
--->

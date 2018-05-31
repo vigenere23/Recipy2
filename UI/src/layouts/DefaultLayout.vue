@@ -1,5 +1,5 @@
 <template>
-<div id="default-layout" :class="{'show-side-drawer': rightDrawerOpened}">
+<div id="default-layout" :class="{'show-right-drawer': rightDrawerOpened && !isSmallScreen}">
   <Header :nav="nav" :current="current"></Header>
   <DrawerScreen></DrawerScreen>
   <SearchDrawer></SearchDrawer>
@@ -33,34 +33,42 @@ export default {
 				'dinner',
 				'dessert'
       ],
-      current: 'breakfeast'
+      current: 'breakfeast',
+      isSmallScreen: false
 		}
 	},
 	methods: {
 		handleRightDrawerOpenedEvent(isOpened) {
 			this.rightDrawerOpened = isOpened
-		}
+		},
+    handleIsSmallScreenEvent(isSmallScreen) {
+      this.isSmallScreen = isSmallScreen
+    }
 	},
 	mounted() {
 		bus.$on('rightDrawerOpenedEvent', this.handleRightDrawerOpenedEvent)
+    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
 	},
 	beforeDestroyed() {
 		bus.$off('rightDrawerOpenedEvent')
+    bus.$on('isSmallScreenEvent')
 	}
 }
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~@/assets/scss/variables';
 
 #default-layout {
-	margin-right: 0;
-	transition: margin-right 250ms $ease-in-out;
+  height: 2000px;
+  width: 100%;
+  background-color: $primary-color;
+	transition: width $nav-closing;
 
 	&.show-right-drawer {
-		margin-right: 240px;
-		transition: margin-right 200ms $ease-in-out;
+    width: calc(100% - #{$drawer-width});
+		transition: width $nav-opening;
 	}
 }
 </style>

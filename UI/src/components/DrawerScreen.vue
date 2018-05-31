@@ -1,7 +1,7 @@
 <template>
 	<div
 		id="drawer-screen"
-		:class="{'show-screen': showScreen}"
+		:class="{'show-screen': showScreen && isSmallScreen}"
 		@click="emitCloseDrawersCmd"
 	>
 
@@ -16,7 +16,8 @@ export default {
 	name: 'DrawerScreen',
 	data() {
 		return {
-			showScreen: false
+      showScreen: false,
+      isSmallScreen: false
 		}
 	},
 	methods: {
@@ -25,21 +26,26 @@ export default {
       
       this.showScreen = false
     },
-    handleShowDrawerScreenCmd() {
-      this.showScreen = true
+    handleShowDrawerScreenCmd(showScreen) {
+      this.showScreen = showScreen
+    },
+    handleIsSmallScreenEvent(isSmallScreen) {
+      this.isSmallScreen = isSmallScreen
     }
 	},
 	mounted() {
     bus.$on('showDrawerScreenCmd', this.handleShowDrawerScreenCmd)
+    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
 	},
 	beforeDestroyed() {
     bus.$off('showDrawerScreenCmd')
+    bus.$off('isSmallScreenEvent')
 	}
 }
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~@/assets/scss/variables';
 
 #drawer-screen {
@@ -51,12 +57,12 @@ export default {
   z-index: 80;
   visibility: hidden;
 	background-color: rgba(0, 0, 0, 0);
-	transition: background-color 250ms $ease-in-out, visibility 250ms;
+	transition: background-color $nav-closing, visibility $nav-closing-duration;
 
 	&.show-screen {
 		visibility: visible;
 		background-color: $text-secondary;
-		transition: background-color 200ms $ease-in-out;
+		transition: background-color $nav-opening;
 	}
 }
 </style>

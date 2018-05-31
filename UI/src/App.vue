@@ -14,8 +14,7 @@ export default {
   name: 'App',
   data() {
     return {
-      isSmallScreen: false,
-      isLargeScreen: false
+      isSmallScreen: false
     }
   },
   methods: {
@@ -30,14 +29,6 @@ export default {
       else if (screenWidth >= consts.smallWidth && this.isSmallScreen) {
         this.isSmallScreen = false
         bus.$emit('isSmallScreenEvent', false)
-      }
-      else if (screenWidth < consts.largeWidth && this.isLargeScreen) {
-        this.isLargeScreen = false
-        bus.$emit('isLargeScreenEvent', false)
-      }
-      else if (screenWidth >= consts.largeWidth && !this.isLargeScreen) {
-        this.isLargeScreen = true
-        bus.$emit('isLargeScreenEvent', true)
       }
     }
   },

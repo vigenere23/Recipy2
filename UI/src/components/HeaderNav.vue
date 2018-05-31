@@ -27,7 +27,6 @@ export default {
   text-transform: uppercase;
 
 	ul {
-		display: block;
 		height: 100%;
 		display: flex;
 
