@@ -18,7 +18,7 @@ var RecipeSchema = new Schema({
     required: true,
     validate: {
       validator: v => v.length > 0,
-      message: 'Should be at least 1 ingredient'
+      message: 'Should have at least 1 ingredient'
     }
   },
   steps: {
@@ -26,7 +26,7 @@ var RecipeSchema = new Schema({
     required: true,
     validate: {
       validator: v => v.length > 0,
-      message: 'Should be at least 1 step'
+      message: 'Should have at least 1 step'
     }
   },
   cookingTime: {
