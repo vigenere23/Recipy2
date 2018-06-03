@@ -14,9 +14,9 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
     for (const collection of collections) {
       await mongoose.connection.dropCollection(collection.name).then(() => {
-        console.log("DELETED '" + collection.name + "' collection")
+        console.log(`DELETED '${collection.name}' collection`)
       }, err => {
-        console.log("Could not drop collection '" + collection.name + "'")
+        console.log(`Could not drop collection '${collection.name}'`)
         console.error(err)
       })
     }
