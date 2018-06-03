@@ -1,6 +1,4 @@
-import Recipe from '@/models/recipe'
-
-var recipe = new Recipe({
+export default {
   title: 'The King Burger',
   description: 'Simply the best burger in the world',
   ingredients: [
@@ -15,6 +13,4 @@ var recipe = new Recipe({
   numberOfFavorites: 12,
   numberOfBookmarks: 15,
   mealTypes: [1]
-})
-
-export default recipe
+}

@@ -13,14 +13,15 @@ mongoose.connect(consts.DB_PATH).then(async () => {
     console.log(`Beginning deletion of ALL model entries (${collections.length})\n...`)
 
     for (const collection of collections) {
-      await mongoose.connection.dropCollection(collection.name).then(() => {
-        console.log(`DELETED '${collection.name}' collection`)
-      }, err => {
-        console.log(`Could not drop collection '${collection.name}'`)
+			console.log(`DELETING '${collection.name}' collection...`)
+			try {
+				await mongoose.connection.dropCollection(collection.name)
+			}
+			catch (err) {
+				console.log(`Could not drop collection '${collection.name}'`)
         console.error(err)
-      })
+			}
     }
-
     console.log('DONE')
     
   }
