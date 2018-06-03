@@ -33,16 +33,16 @@ var RecipeSchema = new Schema({
     type: Number,
     min: 0,
     validate: {
-      validator: v => v.isInteger,
-      message: "Should be in whole minutes"
+      validator: v => Number.isInteger(v),
+      message: 'Should be in whole minutes'
     }
   },
   waitingTime: {
     type: Number,
     min: 0,
     validate: {
-      validator: v => v.isInteger,
-      message: "Should be in whole minutes"
+      validator: v => Number.isInteger(v),
+      message: 'Should be in whole minutes'
     }
   },
   numberOfFavorites: {
@@ -50,8 +50,8 @@ var RecipeSchema = new Schema({
     default: 0,
     min: 0,
     validate: {
-      validator: v => v.isInteger,
-      message: "Should be an integer"
+      validator: v => Number.isInteger(v),
+      message: 'Should be an integer'
     }
   },
   numberOfBookmarks: {
@@ -59,9 +59,23 @@ var RecipeSchema = new Schema({
     default: 0,
     min: 0,
     validate: {
-      validator: v => v.isInteger,
-      message: "Should be an integer"
+      validator: v => Number.isInteger(v),
+      message: 'Should be an integer'
     }
+  },
+  mealTypes: {
+    type: [Number],
+    require: true,
+    validate: [
+      {
+        validator: v => v.length >= 1 && v.length <= 2,
+        message: 'Should have between 1 and 2 elements'
+      },
+      {
+        validator: v => v.every(number => Number.isInteger(number) && number >= 0 && number <= 3),
+        message: 'Elements should be between 0 and 3'
+      }
+    ]
   },
   commentsID: {
     type: [String]

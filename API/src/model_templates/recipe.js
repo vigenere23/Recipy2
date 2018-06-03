@@ -13,7 +13,8 @@ var recipe = new Recipe({
   cookingTime: 15,
   waitingTime: 5,
   numberOfFavorites: 12,
-  numberOfBookmarks: 15
+  numberOfBookmarks: 15,
+  mealTypes: [1]
 })
 
 export default recipe
