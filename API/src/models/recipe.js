@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 var Schema = mongoose.Schema
 
 var RecipeSchema = new Schema({
+  timestamps: true,
   userID: {
     type: Schema.Types.ObjectId,
     required: true
