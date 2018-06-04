@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import consts from '@/constants'
+import Progress from '@/useful/progress'
 
 import userTemplate from '@/model_templates/user'
 import recipeTemplate from '@/model_templates/recipe'
@@ -28,7 +29,7 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
 		var users = [] // [User]
 		for (let i = 0; i < numberOfUsers; i++) {
-			users.push(new User(userTemplate))
+      users.push(new User(userTemplate))
 		}
 
 		console.log('Creating recipes...')
@@ -46,16 +47,18 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
 		var allComments = [] // [[Comment]]
 		for (let i = 0; i < numberOfUsers; i++) {
+      let recipesPerUser = []
 			for (let i = 0; i < numberOfRecipesPerUser; i++) {
 				let commentsPerRecipe = []
 				for (let i = 0; i < numberOfCommentsPerRecipe; i++) {
 					commentsPerRecipe.push(new Comment(commentTemplate))
 				}
-				allComments.push(commentsPerRecipe)
-			}
+				recipesPerUser.push(commentsPerRecipe)
+      }
+      allComments.push(recipesPerUser)
 		}
 
-		console.log('STEP 1 COMPLETE\n')
+		console.log('**COMPLETE**\n')
 
 		console.log('\nSTEP 2 : Linking docs')
 		console.log('------')
@@ -73,10 +76,9 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
 		console.log('Linking comments to recipes and users...')
 
-		for (let userRecipes of allRecipes) {
-			for (let [recipeNumber, recipe] of userRecipes.entries()) { // ici, recipeNumber se remet à 0 en changeant de userRecipe!!!
-				console.log(recipeNumber)
-				for (let comment of allComments[recipeNumber]) {
+		for (let [userNumber, userRecipes] of allRecipes.entries()) {
+			for (let [recipeNumber, recipe] of userRecipes.entries()) {
+				for (let comment of allComments[userNumber][recipeNumber]) {
 
 					let randomUser = users[Math.floor(Math.random() * users.length)]
 					comment.userID = randomUser._id
@@ -87,9 +89,7 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 			}
 		}
 
-		throw 'ERR'
-
-		console.log('STEP 2 COMPLETE\n')
+		console.log('**COMPLETE**\n')
 		
 		console.log('\nSTEP 3 : Saving docs')
 		console.log('------')
@@ -120,13 +120,12 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
 		try{
 			console.log('Saving comments...')
-			var i = 0;
-			for (let recipeComments of allComments) {
-				for (let comment of recipeComments) {
-					console.log(i)
-					await comment.save()
-					i++
-				}
+			for (let userRecipes of allComments) {
+        for (let recipeComments of userRecipes) {
+          for (let comment of recipeComments) {
+            await comment.save()
+          }
+        }
 			}
 		}
 		catch (err) {
@@ -134,7 +133,7 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 			console.error(err)
 		}
 
-		console.log('STEP 3 COMPLETE\n')
+		console.log('**COMPLETE**\n')
 
 		console.log('DONE!')
 
