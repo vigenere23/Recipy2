@@ -10,53 +10,58 @@ import User from '@/models/user'
 import Recipe from '@/models/recipe'
 import Comment from '@/models/comment'
 
+const progress = new Progress({
+  wrapper: 'parentheses'
+})
+
 mongoose.connect(consts.DB_PATH).then(async () => {
 
   console.log('Connected to database')
 	console.log('Beggining populating DB with model templates...')
 	console.log('===============================================')
 
-	var numberOfUsers = 2
-	var numberOfRecipesPerUser = 2
-	var numberOfCommentsPerRecipe = 2
+	let numberOfUsers = 10
+	let numberOfRecipesPerUser = 8
+	let numberOfCommentsPerRecipe = 3
 
 	console.log('\nSTEP 1 : Creating docs')
 	console.log('------')
 
 	try {
 
-		console.log('Creating users...')
+    console.log('Creating users...')
 
-		var users = [] // [User]
+		let users = [] // [User]
 		for (let i = 0; i < numberOfUsers; i++) {
       users.push(new User(userTemplate))
-		}
+    }
 
-		console.log('Creating recipes...')
+    
+    console.log('Creating recipes...')
 
-		var allRecipes = [] // [[Recipe]]
+    let allRecipes = [] // [[Recipe]]
 		for (let i = 0; i < numberOfUsers; i++) {
 			let recipesPerUser = []
-			for (let i = 0; i < numberOfRecipesPerUser; i++) {
+			for (let j = 0; j < numberOfRecipesPerUser; j++) {
 				recipesPerUser.push(new Recipe(recipeTemplate))
 			}
 			allRecipes.push(recipesPerUser)
-		}
+    }
 
 		console.log('Creating comments...')
 
-		var allComments = [] // [[Comment]]
-		for (let i = 0; i < numberOfUsers; i++) {
+    let allComments = [] // [[[Comment]]]
+		for (let i = 0, count = 0; i < numberOfUsers; i++) {
       let recipesPerUser = []
-			for (let i = 0; i < numberOfRecipesPerUser; i++) {
+			for (let j = 0; j < numberOfRecipesPerUser; j++) {
 				let commentsPerRecipe = []
-				for (let i = 0; i < numberOfCommentsPerRecipe; i++) {
+				for (let k = 0; k < numberOfCommentsPerRecipe; k++) {
 					commentsPerRecipe.push(new Comment(commentTemplate))
 				}
 				recipesPerUser.push(commentsPerRecipe)
       }
       allComments.push(recipesPerUser)
-		}
+    }
 
 		console.log('**COMPLETE**\n')
 
@@ -94,39 +99,48 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 		console.log('\nSTEP 3 : Saving docs')
 		console.log('------')
 
-		try{
-			console.log('Saving users...')
-			for (let user of users) {
+		try {
+      progress.start('Saving users...')
+              .outOf(numberOfUsers)
+			for (let [i, user] of users.entries()) {
+        progress.increment().division()
 				await user.save()
-			}
+      }
+      progress.done()
 		}
 		catch (err) {
 			console.log('Could not save a user')
 			console.error(err)
-		}
+    }
 
-		try{
-			console.log('Saving recipes...')
+		try {
+      progress.start('Saving recipes...')
+              .outOf(numberOfUsers*numberOfRecipesPerUser)
 			for (let userRecipes of allRecipes) {
 				for (let recipe of userRecipes) {
+          progress.increment().division()
 					await recipe.save()
 				}
-			}
+      }
+      progress.done()
 		}
 		catch (err) {
 			console.log('Could not save a recipe')
 			console.error(err)
 		}
 
-		try{
-			console.log('Saving comments...')
+		try {
+      progress.start('Saving comments...')
+              .outOf(numberOfUsers*numberOfRecipesPerUser*numberOfCommentsPerRecipe)
 			for (let userRecipes of allComments) {
         for (let recipeComments of userRecipes) {
           for (let comment of recipeComments) {
+            progress.increment().division()
             await comment.save()
           }
         }
-			}
+      }
+      progress.done()
 		}
 		catch (err) {
 			console.log('Could not save a comment')

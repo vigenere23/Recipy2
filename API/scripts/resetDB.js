@@ -10,7 +10,7 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 
   if (collections.length != 0) {
 
-    console.log(`Beginning deletion of ALL model entries (${collections.length})\n...`)
+    console.log(`Beginning deletion of ALL model entries (${collections.length} collections)\n...`)
 
     for (const collection of collections) {
 			console.log(`DELETING '${collection.name}' collection...`)
