@@ -5,6 +5,7 @@ import morgan from 'morgan'
 
 // Routes
 import collectionsRoute from '@/routes/collections'
+import recipeRoute from '@/routes/recipe'
 
 // constants
 import consts from '@/constants'
@@ -26,6 +27,7 @@ app.use(cors())
 
 // Bind routes
 app.use('/collections', collectionsRoute)
+app.use('recipes', recipeRoute)
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
