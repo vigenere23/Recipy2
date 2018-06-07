@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import consts from '@/constants'
-import Progress from '@/useful/progress'
+import Progress from './progress'
 
 import userTemplate from '@/model_templates/user'
 import recipeTemplate from '@/model_templates/recipe'
