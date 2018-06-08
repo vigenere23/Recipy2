@@ -1,11 +1,10 @@
 import User from '@/models/user'
-import Recipe from '@/models/recipe'
 
 export default {
 
   async index(req, res) {
     try {
-      res.status(200).send(await Recipe.find())
+      res.status(200).send(await User.find())
     }
     catch (err) {
       res.status(500).send(err)
@@ -14,7 +13,7 @@ export default {
 
   async byId(req, res) {
     try {
-      res.status(200).send(await Recipe.findById(req.params.id))
+      res.status(200).send(await User.findById(req.params.id))
     }
     catch (err) {
       res.status(500).send(err)

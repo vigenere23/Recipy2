@@ -90,6 +90,12 @@ var RecipeSchema = new Schema({
   collection: 'recipes'
 })
 
+// Methods
+
+
+
+// Export
+
 var Recipe = mongoose.model('Recipe', RecipeSchema)
 
 export default Recipe
