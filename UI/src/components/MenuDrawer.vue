@@ -1,7 +1,7 @@
 <template>
   <div id="menu-drawer" :class="{ open: isOpened }">
     <!-- profile section with profile pic and background -->
-    <DrawerNav :nav="nav" :current="current"></DrawerNav>
+    <DrawerNav :nav="nav"></DrawerNav>
   </div>
 </template>
 
@@ -13,8 +13,7 @@ import bus from '@/EventBus'
 export default {
   name: 'MenuDrawer',
   props: {
-    nav: Array,
-    current: String
+    nav: Array
   },
   components: {
     DrawerNav

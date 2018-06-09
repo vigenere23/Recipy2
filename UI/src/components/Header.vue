@@ -5,7 +5,7 @@
       <router-link to="/recipes" class="logo">Recipy</router-link>
     </div>
     <div id="right-header">
-      <HeaderNav v-if="!isSmallScreen" :nav="nav" :current="current"></HeaderNav>
+      <HeaderNav v-if="!isSmallScreen" :nav="nav"></HeaderNav>
       <SigninButton></SigninButton>
       <SearchDrawerButton></SearchDrawerButton>
     </div>
@@ -30,8 +30,7 @@ export default {
     SearchDrawerButton
   },
   props: {
-    nav: Array,
-    current: String
+    nav: Array
   },
 	data() {
 		return {

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <router-view :key="$route.fullPath"></router-view>
-    <!-- :key="" is needed for reloading new route with same component -->
+    <router-view :key="$route.path"></router-view>
   </div>
 </template>
 

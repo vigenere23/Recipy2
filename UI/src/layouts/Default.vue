@@ -1,9 +1,10 @@
 <template>
 <div id="default-layout" :class="{'show-right-drawer': rightDrawerOpened && !isSmallScreen}">
-  <Header :nav="nav" :current="current"></Header>
+  <Header :nav="nav"></Header>
   <DrawerScreen></DrawerScreen>
   <SearchDrawer></SearchDrawer>
-  <MenuDrawer :nav="nav" :current="current"></MenuDrawer>
+  <MenuDrawer :nav="nav"></MenuDrawer>
+	<router-view :key="$route.path"></router-view>
 </div>
 </template>
 
@@ -33,7 +34,6 @@ export default {
 				'dinner',
 				'dessert'
       ],
-      current: 'breakfeast',
       isSmallScreen: false
 		}
 	},
@@ -63,6 +63,7 @@ export default {
 #default-layout {
   height: 2000px;
   width: 100%;
+	margin-top: 64px;
   background-color: $primary-color;
 	transition: width $nav-closing;
 

@@ -2,9 +2,9 @@
 <nav class="nav">
 	<ul>
 		<li v-for="(link, i) in nav" :key="i">
-      <router-link :to="'./' + link">
-        <span :class="{current : link == current}">{{ link }}</span>
-      </router-link>
+      <a @click="changeRecipeType">
+				<span :class="{current : link == current}">{{ link }}</span>
+			</a>
     </li>
 	</ul>
 </nav>
@@ -15,8 +15,20 @@
 export default {
 	name: 'Nav',
 	props:  {
-    nav: Array,
-    current: String
+    nav: Array
+	},
+	data() {
+		return {
+			current: 'all'
+		}
+	},
+	methods: {
+		changeRecipeType(e) {
+			let type = this.nav.includes(e.target.innerHTML) ? e.target.innerHTML : 'all'
+			console.log(this.$route)
+			this.$router.replace({ query: {type} })
+			this.current = type
+		}
 	}
 }
 </script>
@@ -30,6 +42,10 @@ export default {
   ul {
 		list-style: none;
 		text-indent: 0;
+
+		a {
+			cursor: pointer;
+		}
   }
 }
 </style>

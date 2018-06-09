@@ -1,5 +1,5 @@
 <template>
-  <Nav id="drawer-nav" :nav="nav" :current="current"></Nav>
+  <Nav id="drawer-nav" :nav="nav"></Nav>
 </template>
 
 
@@ -12,8 +12,7 @@ export default {
     Nav
   },
 	props:  {
-    nav: Array,
-    current: String
+    nav: Array
 	}
 }
 </script>
