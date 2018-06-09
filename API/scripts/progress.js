@@ -1,102 +1,25 @@
 class Progress {
 
-  constructor(options) {
+  constructor({
+    clear: clearLine = false,
+    descriptor = '',
+    wrapper = null
+  } = {}) {
 
-    if (!options) {
-      this.wrapper = {
-        in: '',
-        out: ''
-      }
-    }
+    Object.assign(this, {clearLine, descriptor})
 
-    else {
-
-      switch (options.clear) {
-
-        case true:
-          this.clearLine = true
-          break
-
-        default:
-          this.clearLine = false
-
-      }
-      
-      switch (options.start) {
-
-        case '':
-        case null:
-        case undefined:
-          this.startText = ''
-          break
-        
-        default:
-          this.startText = options.start
-
-      }
-
-      switch (options.wrapper) {
-
-        case '':
-        case null:
-        case undefined:
-          this.wrapper = {
-            in: '',
-            out: ''
-          }
-          break
-  
-        case 'parentheses':
-          this.wrapper = {
-            in: '(',
-            out: ')'
-          }
-          break
-
-        case 'brackets':
-        this.wrapper = {
-          in: '[',
-          out: ']'
-        }
-        break
-  
-        default:
-          throw 'Unrecognized style option'
-      }
-
-      switch (options.descriptor) {
-
-        case '':
-        case null:
-        case undefined:
-          this.descriptor = ''
-          break
-  
-        default:
-          this.descriptor = options.descriptor
-  
-      }
-
-      switch (options.done) {
-
-        case '':
-        case null:
-        case undefined:
-          this.doneText = ''
-          break
-
-        default:
-          this.doneText = options.done
-
-      }
-    }
+    this.wrapper = 
+      (!wrapper)                  ? { in: '',   out: ''   } :
+      (wrapper === 'parentheses') ? { in: '(',  out: ')'  } :
+      (wrapper === 'brackets')    ? { in: '[',  out: ']'  }
+      : { in: '', out: '' }
 
     return this
-
+    
   }
 
-  start(text) {
-    this.startText = text || ''
+  start(text = '') {
+    this.startText = text
     this.count = 0
     process.stdout.write(`${this.startText}`)
     return this
@@ -112,8 +35,7 @@ class Progress {
     return this
   }
 
-  increment(number) {
-    number = number || 1
+  increment(number = 1) {
     this.count += number
     return this
   }
@@ -131,15 +53,13 @@ class Progress {
     this._write(`${this.count}`)
   }
 
-  _write(text) {
+  _write(text = '') {
     this.clear()
-    text = text || ''
     process.stdout.write(`${this.startText}${this.wrapper.in}${text}${this.wrapper.out}${this.descriptor}`)
   }
 
-  done(text) {
-    text = text || ''
-    process.stdout.write(` ${this.doneText}\n`)
+  done(text = '') {
+    process.stdout.write(` ${text}\n`)
   }
 
   clear() {

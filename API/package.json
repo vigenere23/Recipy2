@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
     "resetDB": "babel-node scripts/resetDB",
-    "populateDB": "babel-node scripts/populateDB"
+    "populateDB": "babel-node scripts/populateDB",
+    "test": "babel-node scripts/test"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
