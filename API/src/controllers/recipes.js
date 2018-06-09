@@ -16,11 +16,13 @@ export default {
     try {
 
       let sort = (req.query.sort && consts.sorts.includes(req.query.sort)) ? req.query.sort : 'createdAt'
-      let order = (req.query.order && consts.orders.includes(req.query.order)) ? req.query.order : 'desc'
+			let order = (req.query.order && consts.orders.includes(req.query.order)) ? req.query.order : 'desc'
+			let title = req.query.title || ''
 
-      let params = JSON.parse(`{ "${sort}": "${order}" }`)
+			let params = JSON.parse(`{ "${sort}": "${order}" }`)
+			let partialTitle = new RegExp(title, 'i')
 
-      res.status(200).send(await Recipe.find({/*name: regexp*/}).sort(params))
+      res.status(200).send(await Recipe.find({title: partialTitle}).sort(params))
 
     }
     catch (err) {
