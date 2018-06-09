@@ -71,10 +71,10 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 		console.log('Linking recipes to users...')
 
 		for (let [userNumber, user] of users.entries()) {
-			for (let [recipeNumber, recipe] of allRecipes[userNumber].entries()) {
+			for (let recipe of allRecipes[userNumber]) {
 
-				user.recipeIDs.push(recipe._id)
-				recipe.userID = user._id
+				user.recipes.push(recipe._id)
+				recipe.author = user._id
 
 			}
 		}
@@ -86,9 +86,8 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 				for (let comment of allComments[userNumber][recipeNumber]) {
 
 					let randomUser = users[Math.floor(Math.random() * users.length)]
-					comment.userID = randomUser._id
-					comment.recipeID = recipe._id
-					recipe.commentIDs.push(comment._id)
+					comment.author = randomUser._id
+					recipe.comments.push(comment._id)
 
 				}
 			}

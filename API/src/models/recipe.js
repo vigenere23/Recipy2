@@ -2,8 +2,7 @@ import mongoose from 'mongoose'
 var Schema = mongoose.Schema
 
 var RecipeSchema = new Schema({
-  //timestamps: true,
-  userID: {
+  author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
     required: true
@@ -79,12 +78,15 @@ var RecipeSchema = new Schema({
       }
     ]
   },
-  commentIDs: [
+  comments: [
 		{
 			type: Schema.Types.ObjectId,
 			ref: 'Comment'
 		}
 	]
+},
+{
+  timestamps: true
 },
 {
   collection: 'recipes'

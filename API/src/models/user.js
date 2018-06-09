@@ -10,19 +10,19 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  recipeIDs: [
+  recipes: [
 		{
 			type: Schema.Types.ObjectId,
 			ref: 'Recipe'
 		}
 	],
-  favoritedIDs: [
+  favorites: [
 		{
 			type: Schema.Types.ObjectId,
 			ref: 'Recipe'
 		}
 ],
-  bookmarkedIDs: [
+  bookmarks: [
 		{
 			type: Schema.Types.ObjectId,
 			ref: 'Recipe'

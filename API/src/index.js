@@ -8,7 +8,7 @@ import collectionsRoute from '@/routes/collections'
 import usersRoute from '@/routes/users'
 import recipesRoute from '@/routes/recipes'
 
-// constants
+// Constants
 import consts from '@/constants'
 
 // Connect to database

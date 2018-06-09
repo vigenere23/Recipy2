@@ -9,6 +9,9 @@ router.get('/:id', userController.byId)
 // router.put('/:id', userController.byIdUpdate)
 // router.delete('/:id', userController.byIdDelete)
 
+router.get('/:id/recipes', userController.getRecipes)
+router.get('/:id/recipes2', userController.getRecipes2)
+
 // router.get('/new', userController.new)
 // router.post('/new', userController.newPost)
 
