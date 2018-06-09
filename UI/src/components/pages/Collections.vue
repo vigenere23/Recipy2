@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import testServices from '@/services/collections'
+import collectionServices from '@/services/collections'
 
 export default {
   name: 'Collections',
@@ -20,7 +20,7 @@ export default {
   methods: {
     getCollectionEntries() {
       if (this.$route.params.collection) {
-        testServices.getCollectionEntries(this.$route.params.collection).then(response => {
+        collectionServices.getCollectionEntries(this.$route.params.collection).then(response => {
           this.message = JSON.stringify(response.data, null, 2)
         })
       } else {
