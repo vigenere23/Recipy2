@@ -15,8 +15,12 @@ export default {
   async search(req, res) {
     try {
 
-      let sort = (req.query.sort && consts.sorts.includes(req.query.sort)) ? req.query.sort : 'date'
+      let sort = (req.query.sort && consts.sorts.includes(req.query.sort)) ? req.query.sort : 'createdAt'
       let order = (req.query.order && consts.orders.includes(req.query.order)) ? req.query.order : 'desc'
+
+      let params = JSON.parse(`{ "${sort}": "${order}" }`)
+
+      res.status(200).send(await Recipe.find({/*name: regexp*/}).sort(params))
 
     }
     catch (err) {
