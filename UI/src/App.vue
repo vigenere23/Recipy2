@@ -56,7 +56,6 @@ export default {
 html,
 body {
   width: 100%;
-	height: 120vh;
   top: 0;
   box-sizing: content-box;
   font-family: 'Roboto', arial, sans-serif;

@@ -16,7 +16,7 @@ export default {
   },
 	data() {
 		return {
-			recipes: null
+			recipes: []
 		}
 	},
 	mounted() {
@@ -41,6 +41,7 @@ export default {
 #recipes {
   margin: auto;
   max-width: 1000px;
+	min-height: 100vh;
   padding: 40px 8px;
 }
 </style>

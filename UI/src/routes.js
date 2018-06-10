@@ -13,7 +13,8 @@ const routes = [
 	{ path: '*', component: DefaultLayout, children: [
 
 		{ path: 'recipes', redirect: '/recipes/search' },
-		{ path: 'recipes/*', component: RecipesPage }
+		{ path: 'recipes/search', component: RecipesPage }/*,
+		{ path: 'recipes/:id', component: RecipePage } */
 
 	] }
 ]

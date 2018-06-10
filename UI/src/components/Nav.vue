@@ -24,8 +24,9 @@ export default {
 	},
 	methods: {
 		changeRecipeType(e) {
-			let type = this.nav.includes(e.target.innerHTML) ? e.target.innerHTML : 'all'
-			this.$router.replace({ query: {type} })
+			let text = e.currentTarget.children[0].innerHTML
+			let type = this.nav.includes(text) ? text : 'all'
+			this.$router.push({ path: '/recipes/search', query: {type} })
 			this.current = type
 		}
 	}
