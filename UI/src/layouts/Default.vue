@@ -28,11 +28,9 @@ export default {
 		return {
       rightDrawerOpened: false,
       nav: [
-        'all',
-				'breakfeast',
-				'lunch',
-				'dinner',
-				'dessert'
+        /*'Home',*/
+				'Find',
+				'Explore'
       ],
       isSmallScreen: false
 		}

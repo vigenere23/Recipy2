@@ -12,22 +12,27 @@
 
 
 <script>
+import bus from '@/EventBus'
+
 export default {
 	name: 'Nav',
 	props:  {
-    nav: Array
+		nav: Array
 	},
 	data() {
 		return {
-			current: 'all'
+			current: ''
 		}
 	},
+	mounted() {
+		bus.$on('updateCurrentNavCmd', this.handleUpdateCurrentNavCmd) // Should be fired by the pages linked by nav tabs
+	},
+	beforeDestroyed() {
+		bus.$off('updateCurrentNavCmd')
+	},
 	methods: {
-		changeRecipeType(e) {
-			let text = e.currentTarget.children[0].innerHTML
-			let type = this.nav.includes(text) ? text : 'all'
-			this.$router.push({ path: '/recipes/search', query: {type} })
-			this.current = type
+		handleUpdateCurrentNavCmd(current) {
+			this.current = current
 		}
 	}
 }
