@@ -2,9 +2,9 @@ import mongoose from 'mongoose'
 import consts from '@/constants'
 import Progress from './progress'
 
-import userTemplate from '@/model_templates/user'
-import recipeTemplate from '@/model_templates/recipe'
-import commentTemplate from '@/model_templates/comment'
+import userTemplate from './model_templates/user'
+import recipeTemplate from './model_templates/recipe'
+import commentTemplate from './model_templates/comment'
 
 import User from '@/models/user'
 import Recipe from '@/models/recipe'
@@ -43,7 +43,7 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 		for (let i = 0; i < numberOfUsers; i++) {
 			let recipesPerUser = []
 			for (let j = 0; j < numberOfRecipesPerUser; j++) {
-				recipesPerUser.push(new Recipe(recipeTemplate))
+				recipesPerUser.push(new Recipe(new recipeTemplate()))
 			}
 			allRecipes.push(recipesPerUser)
     }
