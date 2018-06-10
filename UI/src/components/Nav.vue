@@ -25,7 +25,6 @@ export default {
 	methods: {
 		changeRecipeType(e) {
 			let type = this.nav.includes(e.target.innerHTML) ? e.target.innerHTML : 'all'
-			console.log(this.$route)
 			this.$router.replace({ query: {type} })
 			this.current = type
 		}

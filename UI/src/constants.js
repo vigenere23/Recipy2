@@ -1,3 +1,3 @@
-export default {
-  smallWidth: 1024,
-}
+export default Object.freeze({
+	smallWidth: 1024
+})

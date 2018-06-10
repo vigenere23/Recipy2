@@ -73,7 +73,7 @@ var RecipeSchema = new Schema({
         message: 'Should have between 1 and 2 elements'
       },
       {
-        validator: v => v.every(number => Number.isInteger(number) && number >= 0 && number <= 3),
+        validator: v => v.every(number => Number.isInteger(number) && number >= 1 && number <= 4),
         message: 'Elements should be between 0 and 3'
       }
     ]

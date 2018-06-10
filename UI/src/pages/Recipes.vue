@@ -22,9 +22,14 @@ export default {
 	mounted() {
 		this.getRecipes()
 	},
+	watch: {
+		$route() {
+			this.getRecipes()
+		}
+	},
 	methods: {
 		async getRecipes() {
-			let response = await recipeServices.getRecipes()
+			let response = await recipeServices.getRecipes(this.$route.fullPath)
 			this.recipes = response.data
 		}
 	}

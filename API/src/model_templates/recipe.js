@@ -12,5 +12,5 @@ export default {
   waitingTime: 5,
   numberOfFavorites: 12,
   numberOfBookmarks: 15,
-  mealTypes: [1]
+  mealTypes: [1, 2]
 }

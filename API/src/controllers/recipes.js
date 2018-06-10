@@ -15,18 +15,20 @@ export default {
   async search(req, res) {
     try {
 
-      let sort = (req.query.sort && consts.sorts.includes(req.query.sort)) ? req.query.sort : 'createdAt'
-			let order = (req.query.order && consts.orders.includes(req.query.order)) ? req.query.order : 'desc'
-			let title = req.query.title || ''
-
+      let sort = consts.sorts.includes(req.query.sort) ? req.query.sort : 'createdAt'
+			let order = consts.orders.includes(req.query.order) ? req.query.order : 'desc'
 			let params = JSON.parse(`{ "${sort}": "${order}" }`)
-			let partialTitle = new RegExp(title, 'i')
+			
+			let query = {}
+			if (req.query.title) query.title = new RegExp(req.query.title, 'i')
+			if (Object.keys(consts.mealTypes).includes(req.query.type)) query.mealTypes = consts.mealTypes[req.query.type]
 
-      res.status(200).send(await Recipe.find({title: partialTitle}).sort(params))
+      res.status(200).send(await Recipe.find(query).sort(params))
 
     }
     catch (err) {
-      res.status(500).send(err)
+			res.status(500).send(err)
+			throw err
     }
   },
 
