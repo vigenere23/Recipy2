@@ -9,6 +9,7 @@ export default {
     }
     catch (err) {
       res.status(500).send(err)
+      throw err
     }
   },
 
@@ -38,6 +39,7 @@ export default {
     }
     catch (err) {
       res.status(500).send(err)
+      throw err
     }
   }
 

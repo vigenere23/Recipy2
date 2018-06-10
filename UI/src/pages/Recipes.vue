@@ -37,6 +37,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+#recipes {
+  margin: auto;
+  max-width: 1000px;
+  padding: 40px 8px;
+}
 </style>

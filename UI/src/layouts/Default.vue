@@ -61,7 +61,6 @@ export default {
 @import '~@/assets/scss/variables';
 
 #default-layout {
-  height: 2000px;
   width: 100%;
 	margin-top: 64px;
   background-color: $primary-color;
