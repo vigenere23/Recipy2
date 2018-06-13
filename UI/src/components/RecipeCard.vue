@@ -1,8 +1,26 @@
 <template>
 	<div class="recipe-card">
     <router-link class="card" :to="recipe._id">
-      <div class="img"></div>
-      <p class="title">{{ recipe.title }}</p>
+      <div class="top-bar">
+        <div class="profile-picture"></div>
+        <div class="texts">
+          <p class="title">{{ recipe.title }}</p>
+          <p class="username">{{ `by ${recipe.author.username}` }}</p>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="left">
+          <div class="favorites">
+            <i class="material-icons">favorite</i>
+            <p>{{ recipe.numberOfFavorites }}</p>
+          </div>
+          <div class="bookmarks">
+            <i class="material-icons bookmark">bookmark</i>
+            <p>{{ recipe.numberOfBookmarks }}</p>
+          </div>
+        </div>
+        <i class="material-icons share">share</i>
+      </div>
     </router-link>
 	</div>
 </template>
@@ -19,8 +37,6 @@ export default {
 <style lang="scss">
 @import '~@/assets/scss/variables';
 
-$text-height: 3em;
-
 .recipe-card {
   flex-shrink: 0;
   flex-grow: 0;
@@ -29,7 +45,7 @@ $text-height: 3em;
   &::after {
     content: "";
     display: block;
-    padding-bottom: calc(100% + #{$text-height});
+    padding-bottom: 110%;
   }
 
   .card {
@@ -38,34 +54,95 @@ $text-height: 3em;
     bottom: 8px;
     right: 8px;
     left: 8px;
-    background-color: white;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 4px;
     overflow: hidden;
     box-shadow: $shadow-1dp;
     transition: box-shadow 250ms $ease-in-out;
 
     &:hover {
-      box-shadow: $shadow-4dp;
+      box-shadow: $shadow-8dp;
       transition: box-shadow 200ms $ease-out;
     }
 
-    .img {
-      width: 100%;
-      height: calc(100% - #{$text-height});
-      background-color: #f5f5f5;
+    .top-bar {
+      font-family: 'Roboto', arial, sans-serif;
+      display: flex;
+      align-items: center;
+      padding: 1em;
+      background-color: white;
+
+      .profile-picture {
+        flex-basis: 38px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 38px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+      }
+
+      .texts {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1em;
+
+        .title {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 1.1em;
+          margin-bottom: 0.2em;
+        }
+
+        .username {
+          font-size: 13px;
+          color: $text-secondary;
+        }
+      }
     }
 
-    .title {
-      display: block;
+    .bottom-bar {
+      padding: 1em;
       position: absolute;
-      width: 100%;
       bottom: 0;
-      padding-left: 1em;
-      line-height: 3em;
-      font-family: 'Open Sans';
-      font-weight: 500;
-      text-transform: uppercase;
+      left: 0;
+      right: 0;
       background-color: white;
+      display: flex;
+      justify-content: space-between;
+      color: $text-secondary;
+
+      .material-icons {
+        font-size: 18px;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+
+        :not(:last-child) {
+          margin-right: 0.75em;
+        }
+
+        .material-icons {
+          margin-right: 0.25em;
+        }
+        
+        .favorites, .bookmarks {
+          display: flex;
+          align-items: center;
+        }
+
+        .favorites.selected {
+          color: $favorite-color;
+        }
+
+        .bookmarks.selected {
+          color: $bookmark-color;
+        }
+      }
     }
   }
 }

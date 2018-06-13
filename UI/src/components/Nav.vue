@@ -1,10 +1,10 @@
 <template>
 <nav class="nav">
 	<ul>
-		<li v-for="(link, i) in nav" :key="i">
-      <a @click="changeRecipeType">
-				<span :class="{current : link == current}">{{ link }}</span>
-			</a>
+		<li v-for="(route, i) in nav" :key="i">
+      <router-link @click.native="changeCurrent" :to="route.path">
+				<span :class="{current : route.name == current}">{{ route.name }}</span>
+			</router-link>
     </li>
 	</ul>
 </nav>
@@ -21,20 +21,15 @@ export default {
 	},
 	data() {
 		return {
-			current: ''
+			current: 'find'
 		}
-	},
-	mounted() {
-		bus.$on('updateCurrentNavCmd', this.handleUpdateCurrentNavCmd) // Should be fired by the pages linked by nav tabs
-	},
-	beforeDestroyed() {
-		bus.$off('updateCurrentNavCmd')
-	},
-	methods: {
-		handleUpdateCurrentNavCmd(current) {
-			this.current = current
-		}
-	}
+  },
+  methods: {
+    changeCurrent(e) {
+      console.log(e.currentTarget.children[0].innerHTML)
+      this.current = e.currentTarget.children[0].innerHTML
+    }
+  }
 }
 </script>
 

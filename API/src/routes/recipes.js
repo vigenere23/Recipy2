@@ -4,7 +4,7 @@ const router = express.Router()
 import recipesController from '@/controllers/recipes'
 
 router.get('/', recipesController.index)
-router.get('/search', recipesController.search)
+router.get('/find', recipesController.find)
 
 router.get('/:id', recipesController.byId)
 // router.put('/:id', recipesController.byIdUpdate)

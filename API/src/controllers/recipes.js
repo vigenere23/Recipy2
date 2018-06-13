@@ -5,7 +5,7 @@ export default {
 
   async index(req, res) {
     try {
-      res.status(200).send(await Recipe.find())
+      res.status(200).send(await Recipe.find().populate('author'))
     }
     catch (err) {
       res.status(500).send(err)
@@ -13,7 +13,7 @@ export default {
     }
   },
 
-  async search(req, res) {
+  async find(req, res) {
     try {
 
       let sort = consts.sorts.includes(req.query.sort) ? req.query.sort : 'createdAt'
@@ -24,7 +24,7 @@ export default {
 			if (req.query.title) query.title = new RegExp(req.query.title, 'i')
 			if (Object.keys(consts.mealTypes).includes(req.query.type)) query.mealTypes = consts.mealTypes[req.query.type]
 
-      res.status(200).send(await Recipe.find(query).sort(params))
+      res.status(200).send(await Recipe.find(query).sort(params).populate('author'))
 
     }
     catch (err) {
@@ -35,7 +35,7 @@ export default {
 
   async byId(req, res) {
     try {
-      res.status(200).send(await Recipe.findById(req.params.id))
+      res.status(200).send(await Recipe.findById(req.params.id).populate('author'))
     }
     catch (err) {
       res.status(500).send(err)

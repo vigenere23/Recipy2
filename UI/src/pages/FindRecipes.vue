@@ -1,16 +1,17 @@
 <template>
-  <div id="recipes">
+  <div id="find-recipes">
     <RecipesContainer :recipes="recipes"></RecipesContainer>
   </div>
 </template>
 
 
 <script>
+import bus from '@/EventBus'
 import recipeServices from '@/services/recipes'
 import RecipesContainer from '@/containers/Recipes.vue'
 
 export default {
-	name: 'Recipes',
+	name: 'FindRecipes',
   components: {
 		RecipesContainer
   },
@@ -20,7 +21,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.getRecipes()
+    this.getRecipes()
 	},
 	watch: {
 		$route() {
@@ -38,7 +39,7 @@ export default {
 
 
 <style lang="scss">
-#recipes {
+#find-recipes {
   margin: auto;
   max-width: 1000px;
 	min-height: 100vh;

@@ -29,8 +29,8 @@ export default {
       rightDrawerOpened: false,
       nav: [
         /*'Home',*/
-				'Find',
-				'Explore'
+				{ name: 'find', path: '/recipes/find'},
+				{ name: 'explore', path: '/recipes/explore' }
       ],
       isSmallScreen: false
 		}

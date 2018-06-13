@@ -1,20 +1,22 @@
 // Layouts
 import DefaultLayout from '@/layouts/Default.vue'
-import ReducedLayout from '@/layouts/Reduced.vue'
+// import ReducedLayout from '@/layouts/Reduced.vue'
 
 // Pages
-import RecipesPage from '@/pages/Recipes.vue'
+import FindRecipesPage from '@/pages/FindRecipes.vue'
+import ExploreRecipesPage from '@/pages/ExploreRecipes.vue'
 
 const routes = [
 	{ path: '/', redirect: '/recipes' },
 
-	{ path: '*/new', component: ReducedLayout },
+	// { path: '*/new', component: ReducedLayout },
 
 	{ path: '*', component: DefaultLayout, children: [
 
-		{ path: 'recipes', redirect: '/recipes/search' },
-		{ path: 'recipes/search', component: RecipesPage }/*,
-		{ path: 'recipes/:id', component: RecipePage } */
+		{ path: 'recipes', redirect: '/recipes/find' },
+    { path: 'recipes/find', component: FindRecipesPage },
+    { path: 'recipes/explore', compoonent: ExploreRecipesPage },
+		// { path: 'recipes/:id', component: SingleRecipePage } 
 
 	] }
 ]
