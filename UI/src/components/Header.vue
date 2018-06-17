@@ -63,14 +63,13 @@ export default {
 
 #header {
   width: inherit;
-  height: 64px;
+  height: 56px;
   background-color: white;
   position: fixed;
   padding: 0 16px;
   top: 0;
 	left: 0;
 	right: 0;
-	border-bottom: solid 1px $divider-color;
   z-index: 50;
 	display: flex;
 	flex-direction: left;

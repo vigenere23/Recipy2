@@ -60,7 +60,7 @@ export default {
 
 #default-layout {
   width: 100%;
-	margin-top: 64px;
+	margin-top: 56px;
   background-color: $primary-color;
 	transition: width $nav-closing;
 

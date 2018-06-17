@@ -31,40 +31,32 @@ export default {
 
     li {
       width: 100%;
-      height: 48px;
+      height: 42px;
 
       a {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+				height: 100%;
+				border-radius: 0 21px 21px 0;
         display: flex;
         align-items: center;
         transition: background-color 250ms $ease-in-out;
 
-        &:hover {
+        &:hover:not(.current) {
           background-color: #F5F5F5;
           transition: background-color 200ms $ease-in-out;
         }
 
         span {
           padding-left: 32px;
+				}
 
-          &.current {
-            color: $primary-color;
-            text-indent: 0.5em;
-          }
+				&.current {
+					background-color: $primary-color-alpha;
 
-          &.current::before {
-            content: "";
-            height: 100%;
-            width: 1.4em;
-            display: block;
-            position: absolute;
-            left: 0;
-            transform: translateX(-50%);
-            background-color: $primary-color;
-            border-radius: 50%;
-          }
-        }
+					span {
+						color: $primary-color;
+					}
+				}
       }
     }
   }

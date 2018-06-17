@@ -2,8 +2,12 @@
 <nav class="nav">
 	<ul>
 		<li v-for="(route, i) in nav" :key="i">
-      <router-link @click.native="changeCurrent" :to="route.path">
-				<span :class="{current : route.name == current}">{{ route.name }}</span>
+      <router-link
+				@click.native="changeCurrent"
+				:to="route.path"
+				:class="{current : route.name == current}"
+			>
+				<span>{{ route.name }}</span>
 			</router-link>
     </li>
 	</ul>
@@ -26,7 +30,6 @@ export default {
   },
   methods: {
     changeCurrent(e) {
-      console.log(e.currentTarget.children[0].innerHTML)
       this.current = e.currentTarget.children[0].innerHTML
     }
   }

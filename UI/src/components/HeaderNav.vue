@@ -32,6 +32,7 @@ export default {
 
 		li {
 			height: 100%;
+			align-content: center;
       
       a {
         height: 100%;
@@ -45,20 +46,23 @@ export default {
           height: 100%;
           display: flex;
           align-items: center;
-          
-          &.current {
-            color: $primary-color;
-          }
+				}
 
-          &.current::after {
-            content: "";
-            width: 100%;
-            display: block;
-            position: absolute;
-            bottom: 0;
-            border-top: 4px solid $primary-color;
-            border-radius: 2px;
-          }
+				&.current {
+					span {
+						color: $primary-color;
+					}
+
+					&::after {
+						content: "";
+						display: block;
+						position: absolute;
+						left: 5%;
+						right: 5%;
+						bottom: 0;
+						border-top: 4px solid $primary-color;
+						border-radius: 4px;
+					}
         }
       }
 		}
