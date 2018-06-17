@@ -24,7 +24,10 @@ export default {
 			if (req.query.title) query.title = new RegExp(req.query.title, 'i')
 			if (Object.keys(consts.mealTypes).includes(req.query.type)) query.mealTypes = consts.mealTypes[req.query.type]
 
-      res.status(200).send(await Recipe.find(query).sort(params).populate('author'))
+      let results = await Recipe.find(query, 'title numberOfFavorites numberOfBookmarks createdAt')
+                                .sort(params)
+                                .populate('author', 'username')
+      res.status(200).send(results)
 
     }
     catch (err) {
