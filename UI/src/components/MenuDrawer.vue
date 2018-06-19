@@ -26,6 +26,7 @@ export default {
 
 #menu-drawer {
   width: $drawer-width;
+  max-width: 85%;
   position: fixed;
   left: -100%;
   top: 0;
