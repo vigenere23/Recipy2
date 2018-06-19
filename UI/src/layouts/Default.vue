@@ -1,5 +1,5 @@
 <template>
-<div id="default-layout" :class="{'show-right-drawer': rightDrawerOpened && !isSmallScreen}">
+<div id="default-layout" :class="{'show-right-drawer': $store.showSearchDrawer && !$store.isSmallScreen}">
   <Header :nav="nav"></Header>
   <DrawerScreen></DrawerScreen>
   <SearchDrawer></SearchDrawer>
@@ -26,30 +26,12 @@ export default {
   },
 	data() {
 		return {
-      rightDrawerOpened: false,
       nav: [
         /*'Home',*/
 				{ name: 'find', path: '/recipes/find'},
 				{ name: 'explore', path: '/recipes/explore' }
-      ],
-      isSmallScreen: false
+      ]
 		}
-	},
-	methods: {
-		handleRightDrawerOpenedEvent(isOpened) {
-			this.rightDrawerOpened = isOpened
-		},
-    handleIsSmallScreenEvent(isSmallScreen) {
-      this.isSmallScreen = isSmallScreen
-    }
-	},
-	mounted() {
-		bus.$on('rightDrawerOpenedEvent', this.handleRightDrawerOpenedEvent)
-    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
-	},
-	beforeDestroyed() {
-		bus.$off('rightDrawerOpenedEvent')
-    bus.$on('isSmallScreenEvent')
 	}
 }
 </script>

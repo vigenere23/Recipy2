@@ -11,24 +11,22 @@ import consts from '@/constants'
 
 export default {
   name: 'App',
-  data() {
-    return {
-      isSmallScreen: false
-    }
-  },
   methods: {
     handleResizeEvent(e) {
       const target = e != null ? e.target : window
       const screenWidth = target.innerWidth
 
-      if (screenWidth < consts.smallWidth && !this.isSmallScreen) {
-        this.isSmallScreen = true // needed to ensure in-time response
-        bus.$emit('isSmallScreenEvent', true)
+      if (screenWidth < consts.smallWidth && !this.$store.isSmallScreen) {
+        this.$store.isSmallScreen = true
       }
-      else if (screenWidth >= consts.smallWidth && this.isSmallScreen) {
-        this.isSmallScreen = false
-        bus.$emit('isSmallScreenEvent', false)
+      else if (screenWidth >= consts.smallWidth && this.$store.isSmallScreen) {
+        this.$store.isSmallScreen = false
+        this.closeDrawers()
       }
+    },
+    closeDrawers() {
+      this.$store.showMenuDrawer = false
+      this.$store.showSearchDrawer = false
     }
   },
   mounted() {

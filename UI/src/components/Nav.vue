@@ -16,8 +16,6 @@
 
 
 <script>
-import bus from '@/EventBus'
-
 export default {
 	name: 'Nav',
 	props:  {

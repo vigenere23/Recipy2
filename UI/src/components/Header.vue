@@ -1,11 +1,11 @@
 <template>
   <div id="header" :class="{ float: isScrolledTop }">
     <div id="left-header">
-      <MenuDrawerButton v-if="isSmallScreen"></MenuDrawerButton>
+      <MenuDrawerButton v-if="$store.isSmallScreen"></MenuDrawerButton>
       <router-link to="/recipes" class="logo">Recipy</router-link>
     </div>
     <div id="right-header">
-      <HeaderNav v-if="!isSmallScreen" :nav="nav"></HeaderNav>
+      <HeaderNav v-if="!$store.isSmallScreen" :nav="nav"></HeaderNav>
       <SigninButton></SigninButton>
       <SearchDrawerButton></SearchDrawerButton>
     </div>
@@ -18,8 +18,6 @@ import MenuDrawerButton from '@/components/MenuDrawerButton.vue'
 import HeaderNav from '@/components/HeaderNav.vue'
 import SigninButton from '@/components/SigninButton.vue'
 import SearchDrawerButton from '@/components/SearchDrawerButton.vue'
-
-import bus from '@/EventBus'
 
 export default {
   name: 'Header',
@@ -34,25 +32,19 @@ export default {
   },
 	data() {
 		return {
-      isScrolledTop: false,
-      isSmallScreen: false
+      isScrolledTop: false
 		}
 	},
 	methods: {
 		handleScrollEvent(e) {
 			this.isScrolledTop = e.pageY > 10
-    },
-    handleIsSmallScreenEvent(isSmallScreen) {
-      this.isSmallScreen = isSmallScreen
     }
 	},
 	mounted () {
     window.addEventListener('scroll', this.handleScrollEvent);
-    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
   },
   beforeDestroyed () {
     window.removeEventListener('scroll');
-    bus.$off('isSmallScreenEvent')
   }
 }
 </script>

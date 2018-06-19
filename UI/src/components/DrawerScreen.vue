@@ -1,46 +1,23 @@
 <template>
-	<div
-		id="drawer-screen"
-		:class="{'show-screen': showScreen && isSmallScreen}"
-		@click="emitCloseDrawersCmd"
-	>
-
-	</div>
+	<div id="drawer-screen" :class="{ show: showScreen }"	@click="closeDrawers"></div>
 </template>
 
 
 <script>
-import bus from '@/EventBus'
-
 export default {
-	name: 'DrawerScreen',
-	data() {
-		return {
-      showScreen: false,
-      isSmallScreen: false
-		}
-	},
-	methods: {
-		emitCloseDrawersCmd() {
-      bus.$emit('closeDrawersCmd') // see events hierarchy
-      
-      this.showScreen = false
-    },
-    handleShowDrawerScreenCmd(showScreen) {
-      this.showScreen = showScreen
-    },
-    handleIsSmallScreenEvent(isSmallScreen) {
-      this.isSmallScreen = isSmallScreen
+  name: 'DrawerScreen',
+  computed: {
+    showScreen() {
+      return this.$store.isSmallScreen &&
+        (this.$store.showMenuDrawer || this.$store.showSearchDrawer)
     }
-	},
-	mounted() {
-    bus.$on('showDrawerScreenCmd', this.handleShowDrawerScreenCmd)
-    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
-	},
-	beforeDestroyed() {
-    bus.$off('showDrawerScreenCmd')
-    bus.$off('isSmallScreenEvent')
-	}
+  },
+  methods: {
+    closeDrawers() {
+      this.$store.showMenuDrawer = false
+      this.$store.showSearchDrawer = false
+    }
+  }
 }
 </script>
 
@@ -59,7 +36,7 @@ export default {
 	background-color: rgba(0, 0, 0, 0);
 	transition: background-color $nav-closing, visibility $nav-closing-duration;
 
-	&.show-screen {
+	&.show {
 		visibility: visible;
 		background-color: $text-secondary;
 		transition: background-color $nav-opening;

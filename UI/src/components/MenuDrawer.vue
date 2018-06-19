@@ -1,5 +1,5 @@
 <template>
-  <div id="menu-drawer" :class="{ open: isOpened }">
+  <div id="menu-drawer" :class="{ show: $store.showMenuDrawer && $store.isSmallScreen }">
     <!-- profile section with profile pic and background -->
     <DrawerNav :nav="nav"></DrawerNav>
   </div>
@@ -8,7 +8,6 @@
 
 <script>
 import DrawerNav from '@/components/DrawerNav.vue'
-import bus from '@/EventBus'
 
 export default {
   name: 'MenuDrawer',
@@ -17,38 +16,6 @@ export default {
   },
   components: {
     DrawerNav
-  },
-  data() {
-    return {
-      isOpened: false
-    }
-  },
-  methods: {
-    handleLeftDrawerOpenedEvent(isOpened) {
-      if (isOpened) {
-        bus.$emit('showDrawerScreenCmd', true)
-      }
-      
-      this.isOpened = isOpened
-    },
-    handleIsSmallScreenEvent(isSmallScreen) {
-      if (!isSmallScreen) {
-
-        if (this.isOpened) {
-          bus.$emit('showDrawerScreenCmd', false)
-        }
-        
-        bus.$emit('leftDrawerOpenedEvent', false)
-      }
-    }
-  },
-  mounted() {
-    bus.$on('leftDrawerOpenedEvent', this.handleLeftDrawerOpenedEvent)
-    bus.$on('isSmallScreenEvent', this.handleIsSmallScreenEvent)
-  },
-  beforeDestroyed() {
-    bus.$off('leftDrawerOpenedEvent')
-    bus.$off('isSmallScreenEvent')
   }
 }
 </script>
@@ -68,7 +35,7 @@ export default {
   z-index: 90;
   transition: left 300ms $ease-in-out;
 
-  &.open {
+  &.show {
     left: 0;
     transition: left 250ms $ease-out;
   }
