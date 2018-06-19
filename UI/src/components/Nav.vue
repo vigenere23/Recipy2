@@ -3,7 +3,6 @@
 	<ul>
 		<li v-for="(route, i) in nav" :key="i">
       <router-link
-				@click.native="changeCurrent"
 				:to="route.path"
 				:class="{current : route.name == current}"
 			>
@@ -21,14 +20,9 @@ export default {
 	props:  {
 		nav: Array
 	},
-	data() {
-		return {
-			current: 'find'
-		}
-  },
-  methods: {
-    changeCurrent(e) {
-      this.current = e.currentTarget.children[0].innerHTML
+	computed: {
+    current() {
+      return this.$route.name
     }
   }
 }

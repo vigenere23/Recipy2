@@ -1,3 +1,3 @@
 export default Object.freeze({
-	smallWidth: 1024
+	smallWidth: 1000
 })
