@@ -1,3 +1,6 @@
+import consts from '@/constants'
+const nav = consts.nav
+
 // Layouts
 import DefaultLayout from '@/layouts/Default.vue'
 // import ReducedLayout from '@/layouts/Reduced.vue'
@@ -13,8 +16,8 @@ const routes = [
 	{ path: '*', component: DefaultLayout, children: [
 
 		{ path: 'recipes', redirect: '/recipes/find' },
-    { path: 'recipes/find', name: 'find', component: FindRecipesPage },
-    { path: 'recipes/explore', name: 'explore', compoonent: ExploreRecipesPage },
+    { path: nav[0].path, name: nav[0].name, component: FindRecipesPage },
+    { path: nav[1].path, name: nav[1].name, compoonent: ExploreRecipesPage },
 		{ path: 'recipes/:id', component: SingleRecipePage } 
 
 	] }

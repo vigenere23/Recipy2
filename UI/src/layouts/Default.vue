@@ -10,7 +10,7 @@
 
 
 <script>
-import bus from '@/EventBus'
+import consts from '@/constants'
 import Header from '@/components/Header.vue'
 import DrawerScreen from '@/components/DrawerScreen.vue'
 import SearchDrawer from '@/components/SearchDrawer.vue'
@@ -26,11 +26,7 @@ export default {
   },
 	data() {
 		return {
-      nav: [
-        /*'Home',*/
-				{ name: 'find', path: '/recipes/find'},
-				{ name: 'explore', path: '/recipes/explore' }
-      ]
+      nav: consts.nav
 		}
 	}
 }
