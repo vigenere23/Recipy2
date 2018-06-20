@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
+    "dev-debug": "babel-node src/index.js",
     "resetDB": "babel-node scripts/resetDB",
     "populateDB": "babel-node scripts/populateDB",
     "test": "babel-node scripts/test"

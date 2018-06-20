@@ -1,4 +1,9 @@
 export default {
-  username: 'lolgab123',
-  bio: 'I am a good chief!'
+  username: 'masterCooker',
+  name: {
+    first: 'John',
+    last: 'Doe'
+  },
+  email: 'example@hotmail.com',
+  about: 'I am a good chief!'
 }

@@ -6,7 +6,21 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  bio: {
+  email: {
+    type: String,
+    required: true
+  },
+  name: {
+    first: {
+      type: String,
+      required: true
+    },
+    last: {
+      type: String,
+      required: true
+    }
+  },
+  about: {
     type: String,
     required: true
   },
@@ -32,6 +46,12 @@ var UserSchema = new Schema({
 {
   collection: 'users'
 })
+
+// Virtuals
+UserSchema.virtual('fullName')
+  .get(function() {
+    return `${this.name.first} ${this.name.last}`
+  })
 
 // Methods
 
