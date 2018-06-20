@@ -1,13 +1,18 @@
 <template>
   <div id="search-drawer" :class="{ show: $store.showSearchDrawer }">
-
+    <SearchDrawerInput></SearchDrawerInput>
   </div>
 </template>
 
 
 <script>
+import SearchDrawerInput from '@/components/SearchDrawerInput.vue'
+
 export default {
-  name: 'SearchDrawer'
+  name: 'SearchDrawer',
+  components: {
+    SearchDrawerInput
+  }
 }
 </script>
 
@@ -19,17 +24,18 @@ export default {
   width: $drawer-width;
   max-width: 85%;
   position: fixed;
+  padding: 16px;
   right: -100%;
   top: 0;
   bottom: 0;
   background-color: white;
   color: $text-secondary;
   z-index: 90;
-  transition: right 300ms $ease-in-out;
+  transition: right $nav-closing;
 
   &.show {
     right: 0;
-    transition: right 250ms $ease-out;
+    transition: right $nav-opening;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <a id="search-drawer-button" @click="$store.showSearchDrawer = !$store.showSearchDrawer">
+  <a id="search-drawer-button" @click="handleClick">
     <i class="material-icons">
 			{{ $store.showSearchDrawer ? 'keyboard_arrow_right' : 'search' }}
 		</i>
@@ -9,7 +9,15 @@
 
 <script>
 export default {
-  name: 'SearchDrawerButton'
+  name: 'SearchDrawerButton',
+  methods: {
+    handleClick() {
+      if (!this.$store.showSearchDrawer && this.$route.path != '/recipes/find') {
+        this.$router.push('/recipes/find')
+      }
+      this.$store.showSearchDrawer = !this.$store.showSearchDrawer
+    }
+  }
 }
 </script>
 

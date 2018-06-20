@@ -68,6 +68,13 @@ a {
   color: inherit;
 }
 
+button {
+  color: inherit;
+  background-color: none;
+  border: 0;
+  cursor: pointer;
+}
+
 i.material-icons {
   font-weight: 400;
 }
