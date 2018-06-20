@@ -34,7 +34,7 @@ export default {
       height: 42px;
 
       a {
-        width: 90%;
+        width: 85%;
 				height: 100%;
 				border-radius: 0 21px 21px 0;
         display: flex;

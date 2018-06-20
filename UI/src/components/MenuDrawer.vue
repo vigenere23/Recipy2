@@ -1,12 +1,18 @@
 <template>
-  <div id="menu-drawer" :class="{ show: $store.showMenuDrawer && $store.isSmallScreen }">
-    <!-- profile section with profile pic and background -->
+  <div
+    id="menu-drawer"
+    :class="{ show: $store.showMenuDrawer && $store.isSmallScreen }"
+    @click="$store.showMenuDrawer = false"
+  >
+    <DrawerProfile></DrawerProfile>
+    <div class="divider"></div>
     <DrawerNav :nav="nav"></DrawerNav>
   </div>
 </template>
 
 
 <script>
+import DrawerProfile from '@/components/DrawerProfile.vue'
 import DrawerNav from '@/components/DrawerNav.vue'
 
 export default {
@@ -15,6 +21,7 @@ export default {
     nav: Array
   },
   components: {
+    DrawerProfile,
     DrawerNav
   }
 }
@@ -39,6 +46,12 @@ export default {
   &.show {
     left: 0;
     transition: left 250ms $ease-out;
+  }
+
+  .divider {
+    width: 100%;
+    margin-bottom: 12px;
+    border-top: solid 2px $divider-color;
   }
 }
 </style>
