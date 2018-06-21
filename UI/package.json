@@ -26,6 +26,7 @@
     "axios": "^0.18.0",
     "path": "^0.12.7",
     "vue": "^2.5.16",
+    "vue-click-outside": "^1.0.7",
     "vue-router": "^3.0.1",
     "vue-stash": "^2.0.1-beta"
   }

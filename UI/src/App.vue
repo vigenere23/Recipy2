@@ -73,6 +73,8 @@ button {
   background-color: none;
   border: 0;
   cursor: pointer;
+  font: inherit;
+  text-align: inherit;
 }
 
 i.material-icons {

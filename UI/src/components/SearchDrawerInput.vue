@@ -1,9 +1,9 @@
 <template>
   <div id="search-drawer-input">
     <input id="search-title" v-model="query.title" placeholder="Search">
-    <button id="search-title-eraser" @click="query.title = ''">
+    <div id="search-title-eraser" @click="query.title = ''">
       <i class="material-icons">close</i>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -52,6 +52,7 @@ export default {
     background-color: white;
     top: 0;
     right: 0;
+    cursor: pointer;
   }
 }
 </style>
