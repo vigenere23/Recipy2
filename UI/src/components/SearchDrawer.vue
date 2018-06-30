@@ -1,31 +1,17 @@
 <template>
   <div id="search-drawer" :class="{ show: $store.showSearchDrawer }">
-    <SearchDrawerInput></SearchDrawerInput>
-    <div class="spacer"></div>
-    <Dropdown :menu="sortOptions"></Dropdown>
+    <SearchDrawerForm></SearchDrawerForm>
   </div>
 </template>
 
 
 <script>
-import SearchDrawerInput from '@/components/SearchDrawerInput.vue'
-import Dropdown from '@/components/Dropdown.vue'
+import SearchDrawerForm from '@/components/SearchDrawerForm.vue'
 
 export default {
   name: 'SearchDrawer',
   components: {
-    SearchDrawerInput,
-    Dropdown
-  },
-  data() {
-    return {
-      sortOptions: [
-        'date',
-        'popularity',
-        'favorites',
-        'bookmarks'
-      ]
-    }
+    SearchDrawerForm
   }
 }
 </script>
@@ -50,17 +36,6 @@ export default {
   &.show {
     right: 0;
     transition: right $nav-opening;
-  }
-
-  .spacer {
-    width: 100%;
-    margin-bottom: 12px;
-  }
-
-  .divider {
-    width: 100%;
-    margin-bottom: 12px;
-    border-top: solid 2px $divider-color;
   }
 }
 </style>

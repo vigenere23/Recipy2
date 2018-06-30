@@ -1,7 +1,7 @@
 <template>
   <div id="search-drawer-input">
-    <input id="search-title" v-model="query.title" placeholder="Search">
-    <div id="search-title-eraser" @click="query.title = ''">
+    <input id="search-title" v-model="text" placeholder="Search">
+    <div id="search-title-eraser" @click="text = ''">
       <i class="material-icons">close</i>
     </div>
   </div>
@@ -11,19 +11,17 @@
 <script>
 export default {
   name: 'SearchDrawerInput',
+  props: {
+    fieldName: String
+  },
   data() {
     return {
-      query: {
-        title: ''
-      }
+      text: ''
     }
   },
   watch: {
-    query: {
-      handler() {
-        this.$router.push({query: this.query})
-      },
-      deep: true
+    text() {
+      this.$emit('update-form', this.fieldName, this.text)
     }
   }
 }

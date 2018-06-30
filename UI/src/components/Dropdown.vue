@@ -8,14 +8,11 @@
     <i class="material-icons">arrow_drop_down</i>
     <ul class="options">
       <li
-        v-for="(option, i) in options"
-        :key="i" :class="{ selected: option == selected }"
+        v-for="(option, i) in options" :key="i"
+        :class="{ selected: option == selected }"
         @click="changeSelection"
       >{{ option }}</li>
     </ul>
-    <select>
-      <option></option>
-    </select>
   </div>
 </template>
 
@@ -26,7 +23,8 @@ import ClickOutside from 'vue-click-outside'
 export default {
   name: 'Dropdown',
   props: {
-    menu: Array
+    menu: Array,
+    fieldName: String
   },
   data() {
     return {
@@ -42,6 +40,7 @@ export default {
   methods: {
     changeSelection(e) {
       this.selected = e.currentTarget.innerHTML
+      this.$emit('update-form', this.fieldName, this.selected)
     },
     close() {
       this.opened = false
