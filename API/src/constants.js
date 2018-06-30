@@ -8,7 +8,10 @@ export default Object.freeze({
     date: "createdAt"
   }),
 
-	orders: Object.freeze(['desc', 'asc']),
+	orders: Object.freeze({
+    descending: 'desc', 
+    ascending: 'asc'
+  }),
 	
 	mealTypes: Object.freeze({
 		breakfast: 1,

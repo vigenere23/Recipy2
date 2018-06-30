@@ -6,9 +6,11 @@ export default {
   generateSorting(query) {
     let sorts = consts.sorts
     let sortTypes = Object.keys(sorts)
-    
     let sortType = sortTypes.includes(query.sort) ? sorts[query.sort] : 'createdAt'
-    let sortOrder = consts.orders.includes(query.order) ? query.order : 'desc'
+
+    let orders = consts.orders
+    let sortOrders = Object.keys(orders)
+    let sortOrder = sortOrders.includes(query.order) ? orders[query.order] : 'desc'
 
     return JSON.parse(`{ "${sortType}": "${sortOrder}" }`)
   },

@@ -2,7 +2,8 @@
   <form id="search-drawer-form">
     <SearchDrawerInput @update-form="updateForm" fieldName="title"></SearchDrawerInput>
     <div class="spacer"></div>
-    <Dropdown @update-form="updateForm" fieldName="sort" :menu="sortOptions"></Dropdown>
+    <Dropdown @update-form="updateForm" fieldName="sort" :menu="sortOptions" width="40%"></Dropdown>
+    <Dropdown @update-form="updateForm" fieldName="order" :menu="orderOptions" width="55%"></Dropdown>
   </form>
 </template>
 
@@ -25,6 +26,10 @@ export default {
         'popularity',
         'favorites',
         'bookmarks'
+      ],
+      orderOptions: [
+        'descending',
+        'ascending'
       ]
     }
   },

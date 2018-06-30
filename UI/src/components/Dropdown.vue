@@ -3,6 +3,7 @@
     :class="{ dropdown: true, opened: opened }"
     @click="opened = !opened"
     v-click-outside="close"
+    :style="{ width: width || '120px' }"
   >
     <span>{{ selected }}</span>
     <i class="material-icons">arrow_drop_down</i>
@@ -24,7 +25,8 @@ export default {
   name: 'Dropdown',
   props: {
     menu: Array,
-    fieldName: String
+    fieldName: String,
+    width: String
   },
   data() {
     return {
@@ -57,7 +59,7 @@ export default {
 @import '~@/assets/scss/variables';
 
 .dropdown {
-  width: 120px;
+  //width: 120px;
   text-transform: capitalize;
   font-family: 'Open Sans', arial, sans-serif;
   font-size: 14px;
