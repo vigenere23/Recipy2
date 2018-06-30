@@ -20,9 +20,9 @@ mongoose.connect(consts.DB_PATH).then(async () => {
 	console.log('Beggining populating DB with model templates...')
 	console.log('===============================================')
 
-	let numberOfUsers = 10
-	let numberOfRecipesPerUser = 8
-	let numberOfCommentsPerRecipe = 3
+	let numberOfUsers = 1
+	let numberOfRecipesPerUser = 20
+	let numberOfCommentsPerRecipe = 0
 
 	console.log('\nSTEP 1 : Creating docs')
 	console.log('------')

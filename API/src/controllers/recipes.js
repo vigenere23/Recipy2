@@ -1,5 +1,5 @@
 import Recipe from '@/models/recipe'
-import consts from '@/constants'
+import recipesService from '@/services/recipes'
 
 export default {
 
@@ -16,17 +16,11 @@ export default {
   async find(req, res) {
     try {
 
-      let sort = consts.sorts.includes(req.query.sort) ? req.query.sort : 'createdAt'
-			let order = consts.orders.includes(req.query.order) ? req.query.order : 'desc'
-			let params = JSON.parse(`{ "${sort}": "${order}" }`)
-			
-			let query = {}
-			if (req.query.title) query.title = new RegExp(req.query.title, 'i')
-			if (Object.keys(consts.mealTypes).includes(req.query.type)) query.mealTypes = consts.mealTypes[req.query.type]
+      let sort = recipesService.generateSorting(req.query)
+      let query = recipesService.generateQuery(req.query)
 
-      let results = await Recipe.find(query, 'title numberOfFavorites numberOfBookmarks createdAt')
-                                .sort(params)
-                                .populate('author', 'username')
+      let results = await recipesService.filterResults(query, sort)
+
       res.status(200).send(results)
 
     }
