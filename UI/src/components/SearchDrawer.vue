@@ -1,5 +1,5 @@
 <template>
-  <div id="search-drawer" :class="{ show: $store.showSearchDrawer }">
+  <div id="search-drawer" :class="{ show: isSearchDrawerVisible }">
     <SearchDrawerForm></SearchDrawerForm>
   </div>
 </template>
@@ -7,12 +7,16 @@
 
 <script>
 import SearchDrawerForm from '@/components/SearchDrawerForm.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'SearchDrawer',
   components: {
     SearchDrawerForm
-  }
+  },
+  computed: mapState('layout', [
+    'isSearchDrawerVisible'
+  ])
 }
 </script>
 

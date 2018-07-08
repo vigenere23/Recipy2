@@ -1,22 +1,30 @@
 <template>
   <a id="search-drawer-button" @click="handleClick">
     <i class="material-icons">
-			{{ $store.showSearchDrawer ? 'keyboard_arrow_right' : 'search' }}
+			{{ isSearchDrawerVisible ? 'keyboard_arrow_right' : 'search' }}
 		</i>
   </a>
 </template>
 
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'SearchDrawerButton',
+  computed: mapState('layout', [
+    'isSearchDrawerVisible'
+  ]),
   methods: {
     handleClick() {
-      if (!this.$store.showSearchDrawer && this.$route.path != '/recipes/find') {
+      if (!this.isSearchDrawerVisible && this.$route.path != '/recipes/find') {
         this.$router.push('/recipes/find')
       }
-      this.$store.showSearchDrawer = !this.$store.showSearchDrawer
-    }
+      this.toggleSearchDrawer
+    },
+    ...mapMutations('layout', [
+      'toggleSearchDrawer'
+    ])
   }
 }
 </script>

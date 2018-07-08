@@ -7,28 +7,36 @@
 
 
 <script>
-import bus from '@/EventBus'
 import consts from '@/constants'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'App',
+  computed: mapState('layout', [
+    'isSmallScreen'
+  ]),
   methods: {
     handleResizeEvent(e) {
       const target = e != null ? e.target : window
       const screenWidth = target.innerWidth
 
-      if (screenWidth < consts.smallWidth && !this.$store.isSmallScreen) {
-        this.$store.isSmallScreen = true
+      if (screenWidth < consts.smallWidth && !this.isSmallScreen) {
+        this.changeScreenSize(true)
       }
-      else if (screenWidth >= consts.smallWidth && this.$store.isSmallScreen) {
-        this.$store.isSmallScreen = false
+      else if (screenWidth >= consts.smallWidth && this.isSmallScreen) {
+        this.changeScreenSize(false)
         this.closeDrawers()
       }
     },
     closeDrawers() {
-      this.$store.showMenuDrawer = false
-      this.$store.showSearchDrawer = false
-    }
+      this.hideMenuDrawer()
+      this.hideSearchDrawer()
+    },
+    ...mapMutations('layout', [
+      'changeScreenSize',
+      'hideMenuDrawer',
+      'hideSearchDrawer'
+    ])
   },
   mounted() {
     window.addEventListener('resize', this.handleResizeEvent)

@@ -4,19 +4,29 @@
 
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'DrawerScreen',
   computed: {
     showScreen() {
-      return this.$store.isSmallScreen &&
-        (this.$store.showMenuDrawer || this.$store.showSearchDrawer)
-    }
+      return this.isSmallScreen && (this.isMenuDrawerVisible || this.isSearchDrawerVisible)
+    },
+    ...mapState('layout', [
+      'isSmallScreen',
+      'isMenuDrawerVisible',
+      'isSearchDrawerVisible'
+    ])
   },
   methods: {
     closeDrawers() {
-      this.$store.showMenuDrawer = false
-      this.$store.showSearchDrawer = false
-    }
+      this.hideMenuDrawer()
+      this.hideSearchDrawer()
+    },
+    ...mapMutations('layout', [
+    'hideMenuDrawer',
+    'hideSearchDrawer'
+    ])
   }
 }
 </script>

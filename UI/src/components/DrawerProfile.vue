@@ -39,8 +39,8 @@ export default {
     }
   },
   mounted() {
-    let user = null // Call to retreive the user
-    if (user) this.user = user
+    let user = null // Should call the API for registrated user
+    if (user) this.user = user // If the user is registrated, set it
   }
 }
 </script>

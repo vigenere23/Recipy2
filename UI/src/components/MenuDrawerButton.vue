@@ -1,13 +1,18 @@
 <template>
-  <a id="menu-drawer-button" @click="$store.showMenuDrawer = !$store.showMenuDrawer">
+  <a id="menu-drawer-button" @click="toggleMenuDrawer">
     <i class="material-icons">menu</i>
   </a>
 </template>
 
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  name: 'MenuDrawerButton'
+  name: 'MenuDrawerButton',
+  methods: mapMutations('layout', [
+    'toggleMenuDrawer'
+  ]),
 }
 </script>
 

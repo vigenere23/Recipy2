@@ -1,5 +1,5 @@
 <template>
-<div id="default-layout" :class="{'show-right-drawer': $store.showSearchDrawer && !$store.isSmallScreen}">
+<div id="default-layout" :class="{'show-right-drawer': isSearchDrawerVisible && !isSmallScreen}">
   <Header :nav="nav"></Header>
   <DrawerScreen></DrawerScreen>
   <SearchDrawer></SearchDrawer>
@@ -15,6 +15,7 @@ import Header from '@/components/Header.vue'
 import DrawerScreen from '@/components/DrawerScreen.vue'
 import SearchDrawer from '@/components/SearchDrawer.vue'
 import MenuDrawer from '@/components/MenuDrawer.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'DefaultLayout',
@@ -28,7 +29,11 @@ export default {
 		return {
       nav: consts.nav
 		}
-	}
+  },
+  computed: mapState('layout', [
+    'isSmallScreen',
+    'isSearchDrawerVisible'
+  ])
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <div
     id="menu-drawer"
-    :class="{ show: $store.showMenuDrawer && $store.isSmallScreen }"
-    @click="$store.showMenuDrawer = false"
+    :class="{ show: isMenuDrawerVisible && isSmallScreen }"
+    @click="hideMenuDrawer"
   >
     <DrawerProfile></DrawerProfile>
     <div class="divider"></div>
@@ -14,6 +14,7 @@
 <script>
 import DrawerProfile from '@/components/DrawerProfile.vue'
 import DrawerNav from '@/components/DrawerNav.vue'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'MenuDrawer',
@@ -23,6 +24,15 @@ export default {
   components: {
     DrawerProfile,
     DrawerNav
+  },
+  computed: mapState('layout', [
+    'isSmallScreen',
+    'isMenuDrawerVisible'
+  ]),
+  methods: {
+    ...mapMutations('layout', [
+      'hideMenuDrawer'
+    ])
   }
 }
 </script>

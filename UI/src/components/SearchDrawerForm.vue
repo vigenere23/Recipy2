@@ -2,8 +2,10 @@
   <form id="search-drawer-form">
     <SearchDrawerInput @update-form="updateForm" fieldName="title"></SearchDrawerInput>
     <div class="spacer"></div>
-    <Dropdown @update-form="updateForm" fieldName="sort" :menu="sortOptions" width="40%"></Dropdown>
-    <Dropdown @update-form="updateForm" fieldName="order" :menu="orderOptions" width="55%"></Dropdown>
+    <div class="input">
+      <Dropdown @update-form="updateForm" fieldName="sort" :menu="sortOptions" width="120px"></Dropdown>
+    </div>
+    <Dropdown @update-form="updateForm" fieldName="order" :menu="orderOptions" width="124px"></Dropdown>
   </form>
 </template>
 
@@ -56,6 +58,12 @@ export default {
     width: 100%;
     margin-bottom: 12px;
     border-top: solid 2px $divider-color;
+  }
+
+  .input {
+    width: 100%;
+    display: flex;
+
   }
 }
 </style>
