@@ -13,6 +13,7 @@
 <script>
 import SearchDrawerInput from '@/components/SearchDrawerInput.vue'
 import Dropdown from '@/components/Dropdown.vue'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'SearchDrawerForm',
@@ -35,11 +36,17 @@ export default {
       ]
     }
   },
+  computed: mapState('recipes', [
+    'query'
+  ]),
   methods: {
     updateForm(fieldName, value) {
-      this.form[fieldName] = value
-      this.$router.push({ query: this.form })
-    }
+      this.updateQueryField({fieldName, value})
+      this.$router.push({ query: this.query })
+    },
+    ...mapMutations('recipes', [
+      'updateQueryField'
+    ])
   }
 }
 </script>
