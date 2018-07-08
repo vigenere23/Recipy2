@@ -10,27 +10,27 @@ const mutations = {
   },
 
   showMenuDrawer(state) {
-    state.showMenuDrawer = true
+    state.isMenuDrawerVisible = true
   },
 
   hideMenuDrawer(state) {
-    state.showMenuDrawer = false
+    state.isMenuDrawerVisible = false
   },
 
   toggleMenuDrawer(state) {
-    state.showMenuDrawer = !state.showMenuDrawer
+    state.isMenuDrawerVisible = !state.isMenuDrawerVisible
   },
 
   showSearchDrawer(state) {
-    state.showSearchDrawer = true
+    state.isSearchDrawerVisible = true
   },
 
   hideSearchDrawer(state) {
-    state.showSearchDrawer = false
+    state.isSearchDrawerVisible = false
   },
 
   toggleSearchDrawer(state) {
-    state.showSearchDrawer = !state.showSearchDrawer
+    state.isSearchDrawerVisible = !state.isSearchDrawerVisible
   }
 }
 

@@ -20,7 +20,7 @@ export default {
       if (!this.isSearchDrawerVisible && this.$route.path != '/recipes/find') {
         this.$router.push('/recipes/find')
       }
-      this.toggleSearchDrawer
+      this.toggleSearchDrawer()
     },
     ...mapMutations('layout', [
       'toggleSearchDrawer'
