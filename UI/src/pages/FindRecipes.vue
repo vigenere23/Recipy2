@@ -9,30 +9,26 @@
 import bus from '@/EventBus'
 import recipeServices from '@/services/recipes'
 import RecipesContainer from '@/containers/Recipes.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
 	name: 'FindRecipes',
   components: {
 		RecipesContainer
   },
-	data() {
-		return {
-			recipes: []
-		}
-	},
-	mounted() {
-    this.getRecipes()
-	},
+  computed: mapState('recipes', [
+    'recipes'
+  ]), 
+  methods: mapActions('recipes', [
+    'getRecipes'
+  ]),
 	watch: {
 		$route() {
-			this.getRecipes()
+			this.getRecipes(this.$route.fullPath)
 		}
-	},
-	methods: {
-		async getRecipes() {
-			let response = await recipeServices.getRecipes(this.$route.fullPath)
-			this.recipes = response.data
-		}
+  },
+	mounted() {
+    this.getRecipes(this.$route.fullPath)
 	}
 }
 </script>
