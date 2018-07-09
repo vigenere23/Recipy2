@@ -21,7 +21,7 @@ export default {
   },
   watch: {
     text() {
-      this.$emit('update-form', this.fieldName, this.text)
+      this.$emit('input', this.text, this.fieldName)
     }
   }
 }

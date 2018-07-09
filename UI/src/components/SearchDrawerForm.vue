@@ -1,11 +1,11 @@
 <template>
   <form id="search-drawer-form">
-    <SearchDrawerInput @update-form="updateForm" fieldName="title"></SearchDrawerInput>
+    <SearchDrawerInput @input="updateForm" fieldName="title"></SearchDrawerInput>
     <div class="spacer"></div>
     <div class="input">
-      <Dropdown @update-form="updateForm" fieldName="sort" :menu="sortOptions" width="120px"></Dropdown>
+      <Dropdown @input="updateForm" fieldName="sort" :menu="sortOptions" width="120px"></Dropdown>
     </div>
-    <Dropdown @update-form="updateForm" fieldName="order" :menu="orderOptions" width="124px"></Dropdown>
+    <Dropdown @input="updateForm" fieldName="order" :menu="orderOptions" width="124px"></Dropdown>
   </form>
 </template>
 
@@ -40,7 +40,7 @@ export default {
     'query'
   ]),
   methods: {
-    updateForm(fieldName, value) {
+    updateForm(value, fieldName) {
       this.updateQueryField({fieldName, value})
       this.$router.push({ query: this.query })
     },

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{ dropdown: true, opened: opened }"
-    @click="opened = !opened"
+    @click="toggle"
     v-click-outside="close"
     :style="{ width: width || '120px' }"
   >
@@ -35,21 +35,24 @@ export default {
       opened: false
     }
   },
-  mounted() {
-    this.selected = this.options[0]
-    this.popupItem = this.$el
-  },
   methods: {
     changeSelection(e) {
       this.selected = e.currentTarget.innerHTML
-      this.$emit('update-form', this.fieldName, this.selected)
+      this.$emit('input', this.selected, this.fieldName)
     },
     close() {
       this.opened = false
+    },
+    toggle() {
+      this.opened = !this.opened
     }
   },
   directives: {
     ClickOutside
+  },
+  mounted() {
+    this.selected = this.options[0]
+    this.popupItem = this.$el
   }
 }
 </script>
