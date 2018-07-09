@@ -1,11 +1,11 @@
 <template>
-<div id="default-layout" :class="{'show-right-drawer': isSearchDrawerVisible && !isSmallScreen}">
-  <Header :nav="nav"></Header>
-  <DrawerScreen></DrawerScreen>
-  <SearchDrawer></SearchDrawer>
-  <MenuDrawer :nav="nav"></MenuDrawer>
-	<router-view :key="$route.path"></router-view>
-</div>
+  <div id="default-layout" :class="{'show-right-drawer': isSearchDrawerVisible && !isSmallScreen}">
+    <Header :nav="nav"></Header>
+    <DrawerScreen></DrawerScreen>
+    <SearchDrawer></SearchDrawer>
+    <MenuDrawer :nav="nav"></MenuDrawer>
+    <slot></slot>
+  </div>
 </template>
 
 
@@ -43,7 +43,8 @@ export default {
 
 #default-layout {
   width: 100%;
-	margin-top: 56px;
+  min-height: 100vh;
+	padding-top: 56px;
   background-color: $primary-color;
 	transition: width $nav-closing;
 

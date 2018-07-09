@@ -1,6 +1,6 @@
 <template>
 	<div id="reduced-layout">
-		<router-view :key="$route.path"></router-view>
+		<slot></slot>
 	</div>
 </template>
 

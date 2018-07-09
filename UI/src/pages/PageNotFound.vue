@@ -1,7 +1,7 @@
 <template>
 <DefaultLayout>
-  <div id="explore-recipes">
-
+  <div id="page-not-found">
+    <p>Page not found</p>
   </div>
 </DefaultLayout>
 </template>
@@ -10,7 +10,7 @@
 import DefaultLayout from '@/layouts/Default.vue'
 
 export default {
-  name: 'ExploreRecipes',
+  name: 'PageNotFound',
   components: {
     DefaultLayout
   }
