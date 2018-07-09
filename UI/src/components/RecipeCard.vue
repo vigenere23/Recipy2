@@ -2,10 +2,10 @@
 	<div class="recipe-card">
     <router-link class="card" :to="recipe._id">
       <div class="top-bar">
-        <div class="profile-picture"></div>
+        <router-link :to="`/users/${recipe.author._id}`" class="profile-picture"></router-link>
         <div class="texts">
-          <p class="title">{{ recipe.title }}</p>
-          <p class="username">{{ `by ${recipe.author.username}` }}</p>
+          <router-link :to="`/recipes/${recipe._id}`" class="title">{{ recipe.title }}</router-link>
+          <router-link :to="`/users/${recipe.author._id}`" class="username">{{ `by ${recipe.author.username}` }}</router-link>
         </div>
       </div>
       <div class="bottom-bar">
