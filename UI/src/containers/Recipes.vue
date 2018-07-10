@@ -20,7 +20,6 @@ export default {
 
 <style lang="scss">
 .recipes-container {
-	height: 100%;
 	display: flex;
   flex-wrap: wrap;
   justify-content: center;

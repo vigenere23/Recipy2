@@ -4,7 +4,9 @@
     <DrawerScreen></DrawerScreen>
     <SearchDrawer></SearchDrawer>
     <MenuDrawer :nav="nav"></MenuDrawer>
-    <slot></slot>
+    <div class="wrapper">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -43,6 +45,7 @@ export default {
 
 #default-layout {
   width: 100%;
+  height: 100%;
   min-height: 100vh;
 	padding-top: 56px;
   background-color: $primary-color;
@@ -52,5 +55,13 @@ export default {
     width: calc(100% - #{$drawer-width});
 		transition: width $nav-opening;
 	}
+
+  .wrapper {
+    margin: auto;
+    padding: 40px 8px;
+    max-width: 1000px;
+    height: 100%;
+    min-height: 100%;
+  }
 }
 </style>

@@ -62,13 +62,16 @@ export default {
 
 html,
 body {
+  min-height: 100%;
   width: 100%;
-  top: 0;
-  box-sizing: content-box;
   font-family: 'Roboto', arial, sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: $text-primary;
+}
+
+html {
+  overflow: auto;
 }
 
 a {
@@ -87,5 +90,10 @@ button {
 
 i.material-icons {
   font-weight: 400;
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
 }
 </style>
