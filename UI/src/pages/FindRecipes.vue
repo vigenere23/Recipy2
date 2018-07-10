@@ -2,7 +2,7 @@
   <DefaultLayout>
     <div id="find-recipes">
       <RecipesContainer v-if="recipes.length" :recipes="recipes"></RecipesContainer>
-      <NoRecipeFound v-else></NoRecipeFound>
+      <ErrorMessage v-else text="No recipes found!"></ErrorMessage>
     </div>
   </DefaultLayout>
 </template>
@@ -13,7 +13,7 @@ import bus from '@/EventBus'
 import recipeServices from '@/services/recipes'
 import DefaultLayout from '@/layouts/Default.vue'
 import RecipesContainer from '@/containers/Recipes.vue'
-import NoRecipeFound from '@/components/NoRecipeFound.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -21,7 +21,7 @@ export default {
   components: {
     DefaultLayout,
     RecipesContainer,
-    NoRecipeFound
+    ErrorMessage
   },
   computed: mapState('recipes', [
     'recipes'

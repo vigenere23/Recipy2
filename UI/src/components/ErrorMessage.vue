@@ -1,14 +1,17 @@
 <template>
   <div id="no-recipes-found">
     <h1>WOOPS!</h1>
-    <p>No recipes found!</p>
+    <p>{{ text }}</p>
   </div>
 </template>
 
 
 <script>
 export default {
-  name: 'NoRecipeFound'
+  name: 'NoRecipeFound',
+  props: {
+    text: String
+  }
 }
 </script>
 
@@ -17,7 +20,7 @@ export default {
 <style lang="scss">
 #no-recipes-found {
   height: 100%;
-  margin-top: 100px;
+  margin-top: 150px;
   text-align: center;
   color: rgba(0, 0, 0, 0.54);
 
