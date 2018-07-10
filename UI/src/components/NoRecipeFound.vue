@@ -19,7 +19,7 @@ export default {
   height: 100%;
   margin-top: 100px;
   text-align: center;
-  color: white;
+  color: rgba(0, 0, 0, 0.54);
 
   h1 {
     font-size: 72px;
