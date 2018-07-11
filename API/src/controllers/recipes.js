@@ -16,6 +16,7 @@ export default {
   async find(req, res) {
     try {
 
+      console.log(req.query)
       let sort = recipesService.generateSorting(req.query)
       let query = recipesService.generateQuery(req.query)
 

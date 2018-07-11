@@ -5,14 +5,14 @@
     v-click-outside="close"
     :style="{ width: width || '120px' }"
   >
-    <span>{{ selected }}</span>
+    <span>{{ selected.text }}</span>
     <i class="material-icons">arrow_drop_down</i>
     <ul class="options">
       <li
         v-for="(option, i) in options" :key="i"
-        :class="{ selected: option == selected }"
-        @click="changeSelection"
-      >{{ option }}</li>
+        :class="{ selected: option.value === selected.value }"
+        @click="changeSelection(option)"
+      >{{ option.text }}</li>
     </ul>
   </div>
 </template>
@@ -24,21 +24,20 @@ import ClickOutside from 'vue-click-outside'
 export default {
   name: 'Dropdown',
   props: {
-    menu: Array,
-    fieldName: String,
+    options: Array,
+    name: String,
     width: String
   },
   data() {
     return {
-      options: this.menu.map(x => x.toLowerCase()),
-      selected: '',
+      selected: {},
       opened: false
     }
   },
   methods: {
-    changeSelection(e) {
-      this.selected = e.currentTarget.innerHTML
-      this.$emit('input', this.selected, this.fieldName)
+    changeSelection(option) {
+      this.selected = option
+      this.$emit('input', this.selected.value, this.name)
     },
     close() {
       this.opened = false

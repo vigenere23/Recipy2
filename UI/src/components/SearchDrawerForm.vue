@@ -3,9 +3,9 @@
     <SearchDrawerInput @input="updateForm" fieldName="title"></SearchDrawerInput>
     <div class="spacer"></div>
     <div class="input">
-      <Dropdown @input="updateForm" fieldName="sort" :menu="sortOptions" width="120px"></Dropdown>
+      <Dropdown @input="updateForm" name="sort" :options="sortOptions" width="120px"></Dropdown>
     </div>
-    <Dropdown @input="updateForm" fieldName="order" :menu="orderOptions" width="124px"></Dropdown>
+    <Dropdown @input="updateForm" name="order" :options="orderOptions" width="124px"></Dropdown>
   </form>
 </template>
 
@@ -25,14 +25,14 @@ export default {
     return {
       form: {},
       sortOptions: [
-        'date',
-        'popularity',
-        'favorites',
-        'bookmarks'
+        { text: 'Date', value: 'createdAt' },
+        //{ text: 'Popularity', value: 'popularity'},
+        { text: 'Favorites', value: 'numberOfFavorites' },
+        { text: 'Bookmarks', value: 'numberOfBookmarks' }
       ],
       orderOptions: [
-        'descending',
-        'ascending'
+        { text: 'Descending', value: 'desc' },
+        { text: 'Ascending', value: 'asc' }
       ]
     }
   },
@@ -41,7 +41,7 @@ export default {
   ]),
   methods: {
     updateForm(value, fieldName) {
-      this.updateQueryField({fieldName, value})
+      this.updateQueryField({ fieldName, value })
       this.$router.push({ query: this.query })
     },
     ...mapMutations('recipes', [

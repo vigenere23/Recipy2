@@ -4,15 +4,13 @@ import consts from '@/constants'
 export default {
 
   generateSorting(query) {
-    let sorts = consts.sorts
-    let sortTypes = Object.keys(sorts)
-    let sortType = sortTypes.includes(query.sort) ? sorts[query.sort] : 'createdAt'
+    let sortTypes = consts.sorts
+    let sortType = sortTypes.includes(query.sort) ? query.sort : 'createdAt'
 
-    let orders = consts.orders
-    let sortOrders = Object.keys(orders)
-    let sortOrder = sortOrders.includes(query.order) ? orders[query.order] : 'desc'
+    let orderTypes = consts.orders
+    let orderType = orderTypes.includes(query.order) ? query.order : 'desc'
 
-    return JSON.parse(`{ "${sortType}": "${sortOrder}" }`)
+    return JSON.parse(`{ "${sortType}": "${orderType}" }`)
   },
 
   generateQuery(query) {
