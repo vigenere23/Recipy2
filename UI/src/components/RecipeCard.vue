@@ -59,11 +59,11 @@ export default {
     background-size: cover;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: $shadow-1dp;
+    @include shadow(1);
     transition: box-shadow 250ms $ease-in-out;
 
     &:hover {
-      box-shadow: $shadow-8dp;
+      @include shadow(8);
       transition: box-shadow 200ms $ease-out;
     }
 

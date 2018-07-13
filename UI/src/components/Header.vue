@@ -75,7 +75,7 @@ export default {
 	transition: box-shadow 300ms $ease-in-out;
 
 	&.float {
-		box-shadow: $shadow-4dp;
+		@include shadow(4);
 		transition: box-shadow 200ms $ease-in-out;
 	}
 
