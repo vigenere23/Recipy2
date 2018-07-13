@@ -1,32 +1,31 @@
 <template>
   <form id="search-drawer-form">
-    <SearchInput @input="updateForm" name="title" label="Search"></SearchInput>
+    <TextInput @input="updateForm" name="title" label="Search"></TextInput>
     <div class="spacer"></div>
     <div class="input">
-      <Dropdown @input="updateForm" name="sort" label="Sort by" :options="sortOptions"></Dropdown>
+      <DropdownInput @input="updateForm" name="sort" label="Sort by" :options="sortOptions"></DropdownInput>
     </div>
-    <Dropdown @input="updateForm" name="order" label="Order by" :options="orderOptions"></Dropdown>
+    <DropdownInput @input="updateForm" name="order" label="Order by" :options="orderOptions"></DropdownInput>
   </form>
 </template>
 
 
 <script>
-import SearchInput from '@/components/SearchInput.vue'
-import Dropdown from '@/components/Dropdown.vue'
+import TextInput from '@/components/TextInput.vue'
+import DropdownInput from '@/components/DropdownInput.vue'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'SearchDrawerForm',
   components: {
-    SearchInput,
-    Dropdown
+    TextInput,
+    DropdownInput
   },
   data() {
     return {
       form: {},
       sortOptions: [
         { text: 'Date', value: 'createdAt', default: true },
-        //{ text: 'Popularity', value: 'popularity'},
         { text: 'Favorites', value: 'numberOfFavorites' },
         { text: 'Bookmarks', value: 'numberOfBookmarks' }
       ],

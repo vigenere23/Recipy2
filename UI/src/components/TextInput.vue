@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'search-input': true, editing }">
+  <div :class="{ 'text-input': true, editing }">
     <span :class="{ label: true, minimized: text || editing }">{{ label }}</span>
     <input class="text" v-model="text" @focus="startEditing" @blur="stopEditing">
     <i v-if="text" class="material-icons eraser" @click="clearText">cancel</i>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'SearchInput',
+  name: 'TextInput',
   props: {
     name: String,
     label: String,
@@ -44,7 +44,7 @@ export default {
 <style lang="scss">
 @import '~@/assets/scss/variables';
 
-.search-input {
+.text-input {
   font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
   font-weight: 400;

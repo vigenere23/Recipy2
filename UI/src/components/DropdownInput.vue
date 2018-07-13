@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ dropdown: true, opened}"
+    :class="{ 'dropdown-input': true, opened}"
     @click="toggle"
     v-click-outside="close"
     :style="{ width: width || '100%' }"
@@ -26,7 +26,7 @@
 import ClickOutside from 'vue-click-outside'
 
 export default {
-  name: 'Dropdown',
+  name: 'DropdownInput',
   props: {
     options: Array,
     name: String,
@@ -66,7 +66,7 @@ export default {
 <style lang="scss">
 @import '~@/assets/scss/variables';
 
-.dropdown {
+.dropdown-input {
   font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
