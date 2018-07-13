@@ -1,11 +1,10 @@
 <template>
   <div
-    :class="{ dropdown: true, opened: opened }"
+    :class="{ dropdown: true, opened}"
     @click="toggle"
     v-click-outside="close"
     :style="{ width: width || '100%' }"
   >
-    <!--<p class="label">{{ label }}</p>-->
     <span :class="{ label: true, minimized: selected.value || opened }">{{ label }}</span>
     <span class="value">{{ selected.text }}</span>
     <i class="material-icons arrow">arrow_drop_down</i>
@@ -88,7 +87,7 @@ export default {
     left: 16px;
     bottom: 8px;
     font-size: 16px;
-    line-height: 32px;
+    line-height: 24px;
     transition: all 200ms $ease-in-out;
 
     &.minimized {
