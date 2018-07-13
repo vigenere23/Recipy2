@@ -1,6 +1,6 @@
 <template>
   <form id="search-drawer-form">
-    <SearchDrawerInput @input="updateForm" fieldName="title"></SearchDrawerInput>
+    <SearchInput @input="updateForm" name="title" label="Search"></SearchInput>
     <div class="spacer"></div>
     <div class="input">
       <Dropdown @input="updateForm" name="sort" label="Sort by" :options="sortOptions"></Dropdown>
@@ -11,14 +11,14 @@
 
 
 <script>
-import SearchDrawerInput from '@/components/SearchDrawerInput.vue'
+import SearchInput from '@/components/SearchInput.vue'
 import Dropdown from '@/components/Dropdown.vue'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'SearchDrawerForm',
   components: {
-    SearchDrawerInput,
+    SearchInput,
     Dropdown
   },
   data() {
