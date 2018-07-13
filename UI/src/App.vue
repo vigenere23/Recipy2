@@ -90,6 +90,7 @@ button {
 
 i.material-icons {
   font-weight: 400;
+  color: $text-secondary;
 }
 
 #app {

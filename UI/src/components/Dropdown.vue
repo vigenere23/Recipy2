@@ -3,10 +3,12 @@
     :class="{ dropdown: true, opened: opened }"
     @click="toggle"
     v-click-outside="close"
-    :style="{ width: width || '120px' }"
+    :style="{ width: width || '100%' }"
   >
-    <span>{{ selected.text }}</span>
-    <i class="material-icons">arrow_drop_down</i>
+    <!--<p class="label">{{ label }}</p>-->
+    <span :class="{ label: true, minimized: selected.value || opened }">{{ label }}</span>
+    <span class="value">{{ selected.text }}</span>
+    <i class="material-icons arrow">arrow_drop_down</i>
     <ul class="options">
       <li
         v-for="(option, i) in options" :key="i"
@@ -26,12 +28,14 @@ export default {
   props: {
     options: Array,
     name: String,
+    label: String,
     width: String
   },
   data() {
     return {
       selected: {},
-      opened: false
+      opened: false,
+      default: this.options.find(option => option.default)
     }
   },
   methods: {
@@ -50,7 +54,7 @@ export default {
     ClickOutside
   },
   mounted() {
-    this.selected = this.options[0]
+    this.selected = this.default || {}
     this.popupItem = this.$el
   }
 }
@@ -61,41 +65,64 @@ export default {
 @import '~@/assets/scss/variables';
 
 .dropdown {
-  //width: 120px;
-  text-transform: capitalize;
-  font-family: 'Open Sans', arial, sans-serif;
+  font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  padding: 8px 0.25em 8px 1em;
-  background-color: white;
+  margin-bottom: 16px;
+  color: $text-primary;
+  padding: 24px 8px 8px 16px;
+  background-color: $grey-100;
   border-radius: 4px 4px 0 0;
-  border-bottom: solid 2px $divider-color;
+  border-bottom: solid 2px $text-secondary;
   cursor: pointer;
   transition: background-color 200ms $ease-in-out, border 200ms $ease-in-out;
 
   &:hover {
-    background-color: #F5F5F5;
+    background-color: $grey-300;
   }
 
-  span {
-    vertical-align: middle;
+  .label {
+    color: $text-secondary;
+    font-weight: 500;
+    position: absolute;
+    left: 16px;
+    bottom: 8px;
+    font-size: 16px;
+    line-height: 32px;
+    transition: all 200ms $ease-in-out;
+
+    &.minimized {
+      font-size: 11px;
+      line-height: 16px;
+      bottom: 32px;
+      transition: all 150ms $ease-in-out;
+    }
   }
 
-  .material-icons {
-    vertical-align: middle;
+  .value, .arrow {
+    display: inline-block;
+    vertical-align: baseline;
+    line-height: 24px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+
+  .arrow {
     float: right;
   }
 
   &.opened {
-    background-color: #E4E4E4;
+    background-color: $grey-400;
     border-bottom: solid 2px $primary-color;
   }
 
   &.opened .options {
     visibility: visible;
-    top: calc(100% + 2px);
     opacity: 1;
-    transition: top 200ms $ease-in-out, opacity 200ms $ease-in-out;
+    transform: scale(1);
+    transition: opacity 150ms $ease-in-out, transform 150ms $ease-in-out;
   }
 
   &.opened .material-icons {
@@ -107,19 +134,23 @@ export default {
     text-indent: 0;
     padding: 8px 0;
     position: absolute;
-    top: 85%;
+    top: calc(100% + 2px);
     left: 0;
     width: 100%;
-    box-shadow: $shadow-4dp;
+    @include shadow(8);
     border-radius: 0 0 4px 4px;
     background-color: white;
     z-index: 10;
     opacity: 0;
     visibility: hidden;
-    transition: visibility 0s linear 200ms, top 0s linear 200ms, opacity 200ms $ease-in-out;
+    transform: scale(0.8);
+    transform-origin: top left;
+    transition: visibility 0s linear 200ms, transform 0s linear 200ms, opacity 200ms $ease-in-out;
     
     li {
-      padding: 0.75em 1em;
+      padding-left: 16px;
+      padding-right: 8px;
+      line-height: 42px;
       cursor: pointer;
       transition: background-color 200ms $ease-in-out;
 

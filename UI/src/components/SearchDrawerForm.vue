@@ -3,9 +3,9 @@
     <SearchDrawerInput @input="updateForm" fieldName="title"></SearchDrawerInput>
     <div class="spacer"></div>
     <div class="input">
-      <Dropdown @input="updateForm" name="sort" :options="sortOptions" width="120px"></Dropdown>
+      <Dropdown @input="updateForm" name="sort" label="Sort by" :options="sortOptions"></Dropdown>
     </div>
-    <Dropdown @input="updateForm" name="order" :options="orderOptions" width="124px"></Dropdown>
+    <Dropdown @input="updateForm" name="order" label="Order by" :options="orderOptions"></Dropdown>
   </form>
 </template>
 
@@ -25,13 +25,13 @@ export default {
     return {
       form: {},
       sortOptions: [
-        { text: 'Date', value: 'createdAt' },
+        { text: 'Date', value: 'createdAt', default: true },
         //{ text: 'Popularity', value: 'popularity'},
         { text: 'Favorites', value: 'numberOfFavorites' },
         { text: 'Bookmarks', value: 'numberOfBookmarks' }
       ],
       orderOptions: [
-        { text: 'Descending', value: 'desc' },
+        { text: 'Descending', value: 'desc', default: true },
         { text: 'Ascending', value: 'asc' }
       ]
     }
