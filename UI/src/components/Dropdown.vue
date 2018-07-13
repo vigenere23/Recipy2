@@ -15,6 +15,9 @@
         @click="changeSelection(option)"
       >{{ option.text }}</li>
     </ul>
+    <select :name="name" v-model="selected.value" style="display: none;">
+      <option v-for="(option, i) in options" :key="i">{{ option.value }}</option>
+    </select>
   </div>
 </template>
 
