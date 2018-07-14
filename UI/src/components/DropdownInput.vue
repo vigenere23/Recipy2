@@ -58,6 +58,7 @@ export default {
   mounted() {
     this.selected = this.default || {}
     this.popupItem = this.$el
+    this.$emit('input', this.selected.value, this.name)
   }
 }
 </script>

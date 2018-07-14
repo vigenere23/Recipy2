@@ -14,15 +14,15 @@ const mutations = {
     state.query[fieldName] = value
   },
 
-  updateRecipes(state, recipes) {
+  updateRecipesState(state, recipes) {
     state.recipes = recipes
   }
 }
 
 const actions = {
-  async getRecipes({commit}, path) {
-    let response = await recipeServices.getRecipes(path)
-    commit('updateRecipes', response.data)
+  async updateRecipes({ commit, state }, query) {
+    let response = await recipeServices.getRecipes(query || state.query)
+    commit('updateRecipesState', response.data)
   }
 }
 

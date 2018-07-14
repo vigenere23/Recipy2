@@ -1,50 +1,62 @@
 <template>
-  <form id="search-drawer-form">
-    <TextInput @input="updateForm" name="title" label="Search"></TextInput>
-    <div class="spacer"></div>
-    <div class="input">
-      <DropdownInput @input="updateForm" name="sort" label="Sort by" :options="sortOptions"></DropdownInput>
-    </div>
-    <DropdownInput @input="updateForm" name="order" label="Order by" :options="orderOptions"></DropdownInput>
-  </form>
+  <div id="search-drawer-form">
+    <VueForm
+      :inputs="inputs"
+      :changeListener="changeListener"
+    ></VueForm>
+  </div>
 </template>
 
 
 <script>
-import TextInput from '@/components/TextInput.vue'
-import DropdownInput from '@/components/DropdownInput.vue'
-import { mapState, mapMutations } from 'vuex'
+import VueForm from '@/components/VueForm.vue'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'SearchDrawerForm',
   components: {
-    TextInput,
-    DropdownInput
+    VueForm
   },
   data() {
     return {
-      form: {},
-      sortOptions: [
-        { text: 'Date', value: 'createdAt', default: true },
-        { text: 'Favorites', value: 'numberOfFavorites' },
-        { text: 'Bookmarks', value: 'numberOfBookmarks' }
-      ],
-      orderOptions: [
-        { text: 'Descending', value: 'desc', default: true },
-        { text: 'Ascending', value: 'asc' }
+      inputs: [
+        {
+          type: 'text',
+          name: 'title',
+          label: 'Search'
+        },
+        {
+          type: 'dropdown',
+          name: 'sort',
+          label: 'Sorting',
+          options: [
+            { text: 'Date', value: 'createdAt', default: true },
+            { text: 'Favorites', value: 'numberOfFavorites' },
+            { text: 'Bookmarks', value: 'numberOfBookmarks' }
+          ]
+        },
+        {
+          type: 'dropdown',
+          name: 'order',
+          label: 'Ordering',
+          options: [
+            { text: 'Descending', value: 'desc', default: true },
+            { text: 'Ascending', value: 'asc' }
+          ]
+        }
       ]
     }
   },
-  computed: mapState('recipes', [
-    'query'
-  ]),
   methods: {
-    updateForm(value, fieldName) {
-      this.updateQueryField({ fieldName, value })
-      this.$router.push({ query: this.query })
+    changeListener(value, fieldName) {
+      this.updateQueryField({ value, fieldName })
+      this.updateRecipes()
     },
     ...mapMutations('recipes', [
       'updateQueryField'
+    ]),
+    ...mapActions('recipes', [
+      'updateRecipes'
     ])
   }
 }
@@ -57,19 +69,13 @@ export default {
 #search-drawer-form {
   .spacer {
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .divider {
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     border-top: solid 2px $divider-color;
-  }
-
-  .input {
-    width: 100%;
-    display: flex;
-
   }
 }
 </style>

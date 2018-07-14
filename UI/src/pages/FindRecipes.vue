@@ -14,7 +14,7 @@ import recipeServices from '@/services/recipes'
 import DefaultLayout from '@/layouts/Default.vue'
 import RecipesContainer from '@/containers/Recipes.vue'
 import ErrorMessage from '@/components/ErrorMessage.vue'
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
 	name: 'FindRecipes',
@@ -25,18 +25,7 @@ export default {
   },
   computed: mapState('recipes', [
     'recipes'
-  ]), 
-  methods: mapActions('recipes', [
-    'getRecipes'
-  ]),
-	watch: {
-		$route() {
-			this.getRecipes(this.$route.fullPath)
-		}
-  },
-	mounted() {
-    this.getRecipes(this.$route.fullPath)
-	}
+  ])
 }
 </script>
 
