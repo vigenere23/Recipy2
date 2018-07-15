@@ -10,7 +10,7 @@
 
 
 <script>
-import VueInput from '@/components/VueInput.vue'
+import VueInput from '@/wrappers/VueInput.vue'
 
 export default {
   name: 'VueForm',

@@ -12,9 +12,10 @@
 
 
 <script>
-import DrawerProfile from '@/components/DrawerProfile.vue'
-import DrawerNav from '@/components/DrawerNav.vue'
 import { mapState, mapMutations } from 'vuex'
+
+import DrawerNav from '@/wrappers/DrawerNav.vue'
+import DrawerProfile from '@/components/drawers/DrawerProfile.vue'
 
 export default {
   name: 'MenuDrawer',

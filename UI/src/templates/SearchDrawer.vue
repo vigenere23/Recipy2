@@ -6,8 +6,9 @@
 
 
 <script>
-import SearchDrawerForm from '@/components/SearchDrawerForm.vue'
 import { mapState } from 'vuex'
+
+import SearchDrawerForm from '@/wrappers/SearchDrawerForm.vue'
 
 export default {
   name: 'SearchDrawer',

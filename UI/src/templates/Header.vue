@@ -14,11 +14,12 @@
 
 
 <script>
-import MenuDrawerButton from '@/components/MenuDrawerButton.vue'
-import HeaderNav from '@/components/HeaderNav.vue'
-import SigninButton from '@/components/SigninButton.vue'
-import SearchDrawerButton from '@/components/SearchDrawerButton.vue'
 import { mapState } from 'vuex'
+
+import HeaderNav from '@/wrappers/HeaderNav.vue'
+import SigninButton from '@/components/header/SigninButton.vue'
+import MenuDrawerButton from '@/components/drawers/MenuDrawerButton.vue'
+import SearchDrawerButton from '@/components/drawers/SearchDrawerButton.vue'
 
 export default {
   name: 'Header',

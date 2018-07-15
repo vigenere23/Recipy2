@@ -1,7 +1,7 @@
 <template>
   <DefaultLayout>
     <div id="find-recipes">
-      <RecipesContainer v-if="recipes.length" :recipes="recipes"></RecipesContainer>
+      <RecipesList v-if="recipes.length" :recipes="recipes"></RecipesList>
       <ErrorMessage v-else text="No recipes found!"></ErrorMessage>
     </div>
   </DefaultLayout>
@@ -9,18 +9,20 @@
 
 
 <script>
+import { mapState } from 'vuex'
+
 import bus from '@/EventBus'
 import recipeServices from '@/services/recipes'
+
 import DefaultLayout from '@/layouts/Default.vue'
-import RecipesContainer from '@/containers/Recipes.vue'
+import RecipesList from '@/wrappers/RecipesList.vue'
 import ErrorMessage from '@/components/ErrorMessage.vue'
-import { mapState } from 'vuex'
 
 export default {
 	name: 'FindRecipes',
   components: {
     DefaultLayout,
-    RecipesContainer,
+    RecipesList,
     ErrorMessage
   },
   computed: mapState('recipes', [

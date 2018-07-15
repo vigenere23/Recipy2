@@ -9,8 +9,9 @@
 
 
 <script>
-import VueForm from '@/components/VueForm.vue'
 import { mapMutations, mapActions } from 'vuex'
+
+import VueForm from '@/components/VueForm.vue'
 
 export default {
   name: 'SearchDrawerForm',

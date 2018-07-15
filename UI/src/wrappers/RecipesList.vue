@@ -1,5 +1,5 @@
 <template>
-	<div class="recipes-container">
+	<div class="recipes-list">
 		<RecipeCard v-for="recipe in recipes" :key="recipe._id" :recipe="recipe"></RecipeCard>
 	</div>
 </template>
@@ -8,7 +8,7 @@
 import RecipeCard from '@/components/RecipeCard.vue'
 
 export default {
-	name: 'RecipeContainer',
+	name: 'RecipesList',
 	components: {
 		RecipeCard
 	},
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-.recipes-container {
+.recipes-list {
 	display: flex;
   flex-wrap: wrap;
   justify-content: center;

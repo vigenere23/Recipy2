@@ -17,8 +17,8 @@
 
 
 <script>
-import DropdownInput from '@/components/DropdownInput.vue'
-import TextInput from '@/components/TextInput.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import TextInput from '@/components/inputs/TextInput.vue'
 
 export default {
   name: 'Input',

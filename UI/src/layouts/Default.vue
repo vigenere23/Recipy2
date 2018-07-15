@@ -12,12 +12,14 @@
 
 
 <script>
-import consts from '@/constants'
-import Header from '@/components/Header.vue'
-import DrawerScreen from '@/components/DrawerScreen.vue'
-import SearchDrawer from '@/components/SearchDrawer.vue'
-import MenuDrawer from '@/components/MenuDrawer.vue'
 import { mapState } from 'vuex'
+
+import consts from '@/constants'
+
+import Header from '@/templates/Header.vue'
+import MenuDrawer from '@/templates/MenuDrawer.vue'
+import SearchDrawer from '@/templates/SearchDrawer.vue'
+import DrawerScreen from '@/components/drawers/DrawerScreen.vue'
 
 export default {
   name: 'DefaultLayout',
