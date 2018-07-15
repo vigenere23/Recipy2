@@ -16,7 +16,6 @@ export default {
   padding: 8px;
   display: flex;
   align-items: center;
-  font-family: 'Roboto', arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
 }

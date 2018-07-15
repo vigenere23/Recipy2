@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss">
 .nav {
-  font-family: 'Roboto', arial, sans-serif;
   font-weight: 500;
 
   ul {

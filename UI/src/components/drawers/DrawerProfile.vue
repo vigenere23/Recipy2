@@ -74,7 +74,6 @@ export default {
     }
 
     .texts {
-      font-family: 'Roboto', arial, sans-serif;
       margin-top: 16px;
       line-height: 1.4em;
 

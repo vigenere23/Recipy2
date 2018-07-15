@@ -50,8 +50,11 @@ export default {
 
 
 <style lang="scss">
-@import '~@/assets/fonts/Bariol/stylesheet.css';
 @import '~@/assets/scss/variables';
+
+@import '~@/assets/fonts/bariol/stylesheet.css';
+@import '~@/assets/fonts/roboto/stylesheet.css';
+@import '~@/assets/fonts/material-icons/stylesheet.css';
 
 * {
   position: relative;
@@ -65,7 +68,7 @@ body {
   min-height: 100%;
   width: 100%;
   font-family: 'Roboto', arial, sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   color: $text-primary;
 }

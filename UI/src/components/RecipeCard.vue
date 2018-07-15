@@ -68,7 +68,6 @@ export default {
     }
 
     .top-bar {
-      font-family: 'Roboto', arial, sans-serif;
       display: flex;
       align-items: center;
       padding: 1em;
