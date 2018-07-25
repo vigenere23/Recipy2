@@ -19,8 +19,6 @@
 <script>
 import DropdownInput from '@/components/inputs/DropdownInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
-import InputType from '@/types/Input'
-import Validator from '@/libs/validator/Validator'
 
 export default {
   name: 'Input',
