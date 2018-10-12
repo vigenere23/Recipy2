@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import consts from '@/constants'
 import Progress from './progress'
+import dotenv from 'dotenv'
 
 import userTemplate from './model_templates/user'
 import recipeTemplate from './model_templates/recipe'
@@ -14,7 +14,8 @@ const progress = new Progress({
   wrapper: 'parentheses'
 })
 
-mongoose.connect(consts.DB_PATH).then(async () => {
+dotenv.config()
+mongoose.connect(process.env.DB_PATH_SRV, {useNewUrlParser: true}).then(async () => {
 
   console.log('Connected to database')
 	console.log('Beggining populating DB with model templates...')

@@ -8,12 +8,12 @@ import collectionsRoute from '@/routes/collections'
 import usersRoute from '@/routes/users'
 import recipesRoute from '@/routes/recipes'
 
-// Constants
-import consts from '@/constants'
-
 // Connect to database
 import mongoose from 'mongoose'
-mongoose.connect(consts.DB_PATH)
+import dotenv from 'dotenv'
+
+dotenv.config()
+mongoose.connect(process.env.DB_PATH_SRV, {useNewUrlParser: true})
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('connected to the database'))

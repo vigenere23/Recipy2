@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import consts from '@/constants'
+import dotenv from 'dotenv'
 
-
-mongoose.connect(consts.DB_PATH).then(async () => {
+dotenv.config()
+mongoose.connect(process.env.DB_PATH_SRV, {useNewUrlParser: true}).then(async () => {
 
   console.log('Connected to database')
   
